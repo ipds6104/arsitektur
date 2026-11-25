@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arsitektur Infrastruktur Hardware &amp; Software · BPS Mempawah (6104)</title>
+<title>Arsitektur Infrastruktur Hardware, Mesh &amp; Software · BPS Mempawah (6104)</title>
 <!-- GZ:FONTS:START · 字体由 guizang-design 字体清单生成；需要把字体内置进 HTML 时用 gz-fonts.mjs embed（卡片 skill 的 render.mjs 会自动内置） -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1723,7 +1723,7 @@
     gap:1.2vh 1.2vw;min-height:0;
   }
   .matrix-cell{
-    background:var(--paper);padding:1.4vh 1.2vw;
+    background:var(--grey-1);padding:1.4vh 1.2vw;
     display:flex;flex-direction:column;justify-content:space-between;
     border-top:2px solid var(--ink);min-height:0;
   }
@@ -1790,7 +1790,7 @@
     <canvas class="ascii-bg" aria-hidden="true"></canvas>
     <div class="chrome-min">
       <div class="l">BPS KABUPATEN MEMPAWAH · KODE 6104</div>
-      <div class="r">ARCH · 2026 · 01 / 13</div>
+      <div class="r">ARCH · 2026 · 01 / 15</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr auto;gap:2.6vh">
       <div data-anim="kicker" class="t-meta" style="color:rgba(var(--accent-on-rgb),.78);letter-spacing:.22em">SYSTEMS ARCHITECTURE BRIEFING · TIM IT IPDS</div>
@@ -1798,8 +1798,8 @@
         Arsitektur<br/>Infrastruktur <span style="font-style:italic;font-weight:300">BPS 6104</span>
       </h1>
       <div data-anim="bottom" style="display:grid;grid-template-rows:auto auto;gap:1.6vh;border-top:1px solid rgba(var(--accent-on-rgb),.22);padding-top:2vh">
-        <div data-anim="lead" class="lead" style="max-width:66ch;color:rgba(var(--accent-on-rgb),.88);font-weight:300">
-          Blueprint lengkap hardware ThinkStation P320, topologi jaringan Dual-ISP (Dukodu &amp; IndiHome · 3 AP), 78 container aktif di Coolify v4.7.6 + Traefik v3.6, Cloudflare Tunnel HA, dan otomasi CI/CD GitHub Apps.
+        <div data-anim="lead" class="lead" style="max-width:68ch;color:rgba(var(--accent-on-rgb),.88);font-weight:300">
+          Blueprint lengkap ThinkStation P320 (78 container), Dual-ISP &amp; 3 AP, jaringan Tailscale (11 node) + AGY Mesh, Infisical Secret Vault, Coolify v4.7.6, dan roadmap migrasi aset resmi BPS Mempawah.
         </div>
         <div style="display:flex;justify-content:space-between;align-items:end">
           <div class="t-meta" style="color:rgba(var(--accent-on-rgb),.65)">SYSTEMS ARCHITECT LEAD · BRIEFING TIM IT (2 ANGGOTA)</div>
@@ -1815,7 +1815,7 @@
   <div class="canvas-card">
     <div class="chrome-min">
       <div class="l">01 · FONDASI SISTEM</div>
-      <div class="r">02 / 13</div>
+      <div class="r">02 / 15</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:3vh;padding-bottom:3vh">
       <div data-anim="head" style="display:flex;flex-direction:column;gap:1.4vh">
@@ -1826,25 +1826,25 @@
       </div>
       <div class="stack-row" style="margin-top:1vh" data-anim="up">
         <article class="stack-block b-ink">
-          <div class="layer-nb">LAYER 01 · PHYSICAL HARDWARE</div>
+          <div class="layer-nb">LAYER 01 · PHYSICAL &amp; PEER NODES</div>
           <i data-lucide="server"></i>
-          <h3 class="layer-ttl">Hardware &amp; Compute</h3>
-          <p class="layer-desc">1 PC Server ThinkStation P320 (Xeon E3-1220 v6, Quadro P600, 15 GiB RAM, 1 TB HDD, Ubuntu 24.04.4 LTS) plus puluhan PC/laptop operasional pegawai.</p>
-          <div class="layer-tag">THINKSTATION P320 + WORKSTATION</div>
+          <h3 class="layer-ttl">Hardware &amp; Workstation</h3>
+          <p class="layer-desc">1 PC Server ThinkStation P320 (Xeon 4C, Quadro P600, 15 GiB RAM, 1 TB HDD), puluhan PC pegawai, serta 11 node terdaftar di Tailscale Mesh.</p>
+          <div class="layer-tag">THINKSTATION + 11 MESH NODES</div>
         </article>
         <article class="stack-block b-accent">
-          <div class="layer-nb">LAYER 02 · CONNECTIVITY &amp; EDGE</div>
+          <div class="layer-nb">LAYER 02 · NETWORK &amp; OVERLAY</div>
           <i data-lucide="network"></i>
-          <h3 class="layer-ttl">Dual-ISP, 3 AP &amp; Tunnel HA</h3>
-          <p class="layer-desc">ISP Dukodu (1 AP 5GHz) khusus server ThinkStation dengan Dual HA cloudflared QUIC; ISP IndiHome (2 AP) melayani seluruh pegawai kantor.</p>
-          <div class="layer-tag">DUKODU (1 AP) · INDIHOME (2 AP)</div>
+          <h3 class="layer-ttl">Dual-ISP, Tailscale &amp; AGY Mesh</h3>
+          <p class="layer-desc">ISP Dukodu (1 AP) + Dual HA cloudflared QUIC untuk server; IndiHome (2 AP) untuk pegawai; Tailscale + AGY Mesh (:8484) untuk kolaborasi lintas PC.</p>
+          <div class="layer-tag">DUKODU · INDIHOME · TAILSCALE</div>
         </article>
         <article class="stack-block b-grey">
-          <div class="layer-nb">LAYER 03 · SOFTWARE &amp; CI/CD</div>
-          <i data-lucide="git-branch"></i>
-          <h3 class="layer-ttl">Docker, Coolify &amp; GitOps</h3>
-          <p class="layer-desc">Docker v29.5.0 + Coolify v4.7.6 + Traefik v3.6 mengorkestrasi 78 container aktif (*.dvlpid.my.id) dengan 3x GitHub Apps Webhook auto-redeploy.</p>
-          <div class="layer-tag">78 CONTAINERS · 23 APPS · 5 SERVICES</div>
+          <div class="layer-nb">LAYER 03 · PLATFORM, SECRETS &amp; CI/CD</div>
+          <i data-lucide="shield-check"></i>
+          <h3 class="layer-ttl">Coolify, Infisical &amp; GitOps</h3>
+          <p class="layer-desc">Docker v29.5.0 + Coolify v4.7.6 + Traefik v3.6 (78 container), Infisical Vault untuk secret terpusat, dan 3x GitHub Apps Webhook auto-redeploy.</p>
+          <div class="layer-tag">78 CONTAINERS · ZERO HARDCODED SECRETS</div>
         </article>
       </div>
     </div>
@@ -1856,11 +1856,11 @@
   <div class="canvas-card">
     <div class="chrome-min tight">
       <div class="l">02 · MERMAID #1 — RINGKASAN END-TO-END</div>
-      <div class="r">03 / 13</div>
+      <div class="r">03 / 15</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr auto;gap:1.8vh;padding-bottom:3.2vh;min-height:0">
       <div data-anim="line" style="display:flex;flex-direction:column;gap:.8vh">
-        <div class="t-meta">BLUEPRINT TERINTEGRASI · HARDWARE + DUAL-ISP + CLOUDFLARED + COOLIFY + CI/CD</div>
+        <div class="t-meta">BLUEPRINT TERINTEGRASI · DUAL-ISP · CLOUDFLARED · TAILSCALE + AGY MESH · INFISICAL · COOLIFY</div>
         <h2 style="font-family:var(--sans);font-weight:200;font-size:min(4vw,7vh);line-height:1.02;letter-spacing:-.03em;color:var(--text-primary)">
           Peta Arsitektur End-to-End BPS Mempawah
         </h2>
@@ -1886,60 +1886,59 @@ flowchart LR
 
   subgraph Z_EDGE["CLOUD EDGE &amp; INGRESS"]
     direction TB
-    E_CF["Cloudflare Edge&lt;br/&gt;DNS *.dvlpid.my.id + TLS"]
-    E_TUN["Dual HA cloudflared&lt;br/&gt;QUIC Tunnel (No Port Forward)"]
+    E_CF["Cloudflare Edge&lt;br/&gt;*.dvlpid.my.id + TLS"]
+    E_TUN["Dual HA cloudflared&lt;br/&gt;QUIC Tunnel"]
     E_CF &lt;--&gt;|"Outbound QUIC"| E_TUN
   end
 
   subgraph Z_SERVER["ZONA PRODUKSI · DUKODU (1 AP) · THINKSTATION P320"]
     direction TB
     S_ISP["ISP Dukodu → AP 3 (5GHz)"]
-    S_HW["ThinkStation P320&lt;br/&gt;Xeon 4C · 15GiB · Ubuntu 24.04.4"]
-    S_ING["Traefik v3.6 (:80/:443)&lt;br/&gt;+ Direct Host Ports"]
-    S_DK["Docker v29.5.0&lt;br/&gt;78 Containers · 36 Bridges"]
-    S_CL["Coolify v4.7.6 PaaS&lt;br/&gt;23 Apps · 5 Services · 7 DBs"]
-    S_ISP --> S_HW
-    S_HW --> S_DK
-    S_ING --> S_DK
-    S_CL --> S_DK
+    S_HW["ThinkStation P320&lt;br/&gt;Ubuntu 24.04.4 · Docker v29.5.0"]
+    S_ING["Traefik v3.6 + 8 Direct Ports"]
+    S_CL["Coolify v4.7.6 · 78 Containers"]
+    S_INF["Infisical Vault (:8095)&lt;br/&gt;&amp; rIDM SSO (:8096)"]
+    S_ISP --> S_HW --> S_CL
+    S_ING --> S_CL
+    S_INF -->|"Inject Secrets &amp; Auth"| S_CL
   end
 
-  subgraph Z_OPS["CI/CD &amp; REMOTE ADMIN"]
+  subgraph Z_MESH["TAILSCALE OVERLAY (11 NODES) &amp; CI/CD"]
     direction TB
-    C_DEV["Tim IT (Lead + 2 Anggota)"]
+    M_TS["Tailscale Mesh (100.x)&lt;br/&gt;ihza2karunia@ → Target: ipds6104@"]
+    M_AGY["Universal AGY Mesh (:8484)&lt;br/&gt;bps · bps6104-2/7/8 · victus-1 · localhost-0"]
     C_GH["GitHub (main) + GHCR&lt;br/&gt;3x GitHub Apps Webhook"]
-    C_TS["Tailscale Mesh 100.101.49.42&lt;br/&gt;agy-mesh :8484 · SSH"]
-    C_DEV -->|"git push main"| C_GH
-    C_DEV -->|"Remote Ops"| C_TS
+    M_TS &lt;--&gt; M_AGY
   end
 
   O_PC -->|"HTTPS"| E_CF
   E_TUN --> S_ING
-  C_GH -->|"Webhook Auto-Redeploy"| S_CL
-  C_TS -->|"Admin Plane"| S_HW
+  C_GH -->|"Auto-Redeploy"| S_CL
+  M_AGY &lt;--&gt;|"Remote Ops · Blackboard · Screen"| S_HW
+  M_AGY -->|"agy-infisical"| S_INF
 
-  style O_ISP fill:#fafaf8,stroke:#0a0a0a,color:#0a0a0a
   style S_ISP fill:#002FA7,stroke:#002FA7,color:#ffffff
   style S_HW fill:#0a0a0a,stroke:#0a0a0a,color:#fafaf8
   style S_CL fill:#002FA7,stroke:#002FA7,color:#ffffff
+  style S_INF fill:#0a0a0a,stroke:#002FA7,color:#fafaf8
+  style M_TS fill:#fafaf8,stroke:#002FA7,color:#002FA7
   style E_CF fill:#fafaf8,stroke:#002FA7,color:#002FA7
-  style C_GH fill:#fafaf8,stroke:#002FA7,color:#002FA7
             </pre>
           </div>
         </div>
       </div>
       <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2vw;border-top:1px solid var(--grey-2);padding-top:1.2vh">
         <div>
-          <div class="t-cat accent">01 · ZERO PORT FORWARDING</div>
-          <p class="t-body-sm" style="margin-top:.3vh">Akses publik masuk lewat 2x <code style="font-family:var(--mono)">cloudflared</code> QUIC HA ke Cloudflare Edge tanpa ekspos IP router Dukodu.</p>
+          <div class="t-cat accent">01 · PUBLIC DATA PLANE</div>
+          <p class="t-body-sm" style="margin-top:.3vh">Pegawai (IndiHome) akses HTTPS via Cloudflare Edge → Dual HA <code style="font-family:var(--mono)">cloudflared</code> → Traefik &amp; Direct Ports.</p>
         </div>
         <div>
-          <div class="t-cat accent">02 · DUAL-ISP ISOLATION</div>
-          <p class="t-body-sm" style="margin-top:.3vh">IndiHome (2 AP) menanggung trafik pegawai; Dukodu (1 AP) didedikasikan untuk ThinkStation P320.</p>
+          <div class="t-cat accent">02 · PRIVATE MESH PLANE</div>
+          <p class="t-body-sm" style="margin-top:.3vh">11 perangkat PC/laptop/mobile terhubung lewat Tailscale + AGY Mesh (<code style="font-family:var(--mono)">:8484</code>) untuk remote ops &amp; konteks bersama.</p>
         </div>
         <div>
-          <div class="t-cat accent">03 · GITOPS + MESH OPS</div>
-          <p class="t-body-sm" style="margin-top:.3vh">Deploy otomatis via 3x GitHub Apps Webhook; manajemen remote aman lewat Tailscale Mesh &amp; <code style="font-family:var(--mono)">agy-mesh</code>.</p>
+          <div class="t-cat accent">03 · SECRETS &amp; GITOPS</div>
+          <p class="t-body-sm" style="margin-top:.3vh">Infisical Vault (<code style="font-family:var(--mono)">secrets</code>) menjaga kredensial nol-hardcode; 3x GitHub Apps mengotomasi deploy Coolify.</p>
         </div>
       </div>
     </div>
@@ -1951,7 +1950,7 @@ flowchart LR
   <div class="canvas-card">
     <div class="chrome-min tight">
       <div class="l">03 · TELEMETRI HARDWARE PRODUKSI</div>
-      <div class="r">04 / 13</div>
+      <div class="r">04 / 15</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-columns:1fr 1.35fr;gap:3.5vw;padding-bottom:3.5vh;min-height:0">
       <div style="display:flex;flex-direction:column;justify-content:space-between">
@@ -1964,7 +1963,7 @@ flowchart LR
             Host: <code style="font-family:var(--mono)">server-ThinkStation-P320</code><br/>
             GPU: NVIDIA Quadro P600 (GP107GL)<br/>
             OS: Ubuntu 24.04.4 LTS · Kernel 7.0.0-43<br/>
-            NIC Aktif: Realtek Wi-Fi 6 USB (<code style="font-family:var(--mono)">192.168.1.54</code>)
+            Tailscale IP: <code style="font-family:var(--mono)">100.101.49.42</code> · LAN Wi-Fi 6: <code style="font-family:var(--mono)">192.168.1.54</code>
           </p>
         </div>
         <div style="border-top:2px solid var(--accent);padding-top:1.6vh">
@@ -2022,7 +2021,7 @@ flowchart LR
   <div class="canvas-card">
     <div class="chrome-min">
       <div class="l">04 · SEGMENTASI JARINGAN FISIK</div>
-      <div class="r">05 / 13</div>
+      <div class="r">05 / 15</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:2vh;padding-bottom:3.5vh">
       <div data-anim="head" style="display:flex;flex-direction:column;gap:1.2vh">
@@ -2038,9 +2037,9 @@ flowchart LR
           <p class="col-desc" style="color:rgba(var(--paper-rgb),.8)">Melayani trafik harian pegawai BPS Mempawah melalui 2 unit Access Point untuk jangkauan ruang kerja.</p>
           <ul class="col-list" style="border-top-color:rgba(var(--paper-rgb),.22)">
             <li>2 Access Point aktif untuk distribusi Wi-Fi pegawai</li>
-            <li>Menampung puluhan PC &amp; laptop operasional kantor</li>
+            <li>Menampung puluhan PC &amp; laptop kantor (termasuk node Tailscale <code style="font-family:var(--mono)">bps</code>, <code style="font-family:var(--mono)">bps6104-*</code>)</li>
             <li>Beban zoom, upload, &amp; browsing terisolasi dari server</li>
-            <li>Akses ke layanan server lewat HTTPS (*.dvlpid.my.id)</li>
+            <li>Akses aplikasi via HTTPS (*.dvlpid.my.id) atau Tailscale Mesh</li>
           </ul>
         </div>
         <span class="vrule" style="background:rgba(var(--paper-rgb),.22)"></span>
@@ -2052,7 +2051,7 @@ flowchart LR
             <li>1 AP terdedikasi; ThinkStation tersambung via USB Wi-Fi 6 (<code style="font-family:var(--mono)">192.168.1.54</code>)</li>
             <li>2x <code style="font-family:var(--mono)">cloudflared</code> QUIC HA Tunnel ke Cloudflare Edge</li>
             <li>Onboard NIC Intel I219-LM (<code style="font-family:var(--mono)">eno1</code>) saat ini DOWN — kandidat upgrade kabel RJ45</li>
-            <li>Gangguan IndiHome tidak memutus akses publik server</li>
+            <li>Gangguan IndiHome tidak memutus layanan publik server</li>
           </ul>
         </div>
       </div>
@@ -2060,22 +2059,22 @@ flowchart LR
   </div>
 </section>
 
-<!-- SLIDE 06 · S17 System Diagram #2 (DEDICATED HARDWARE & NETWORK MERMAID) · LIGHT -->
+<!-- SLIDE 06 · S17 System Diagram #2 (DEDICATED HARDWARE, NETWORK & TAILSCALE PEERS MERMAID) · LIGHT -->
 <section class="slide light" data-layout="S17" data-animate="system-diagram" data-slide-id="mermaid-hardware">
   <div class="canvas-card">
     <div class="chrome-min tight">
-      <div class="l">05 · MERMAID #2 — ARSITEKTUR HARDWARE &amp; JARINGAN FISIK (LENGKAP)</div>
-      <div class="r">06 / 13</div>
+      <div class="l">05 · MERMAID #2 — ARSITEKTUR HARDWARE, JARINGAN FISIK &amp; 11 NODE TAILSCALE (LENGKAP)</div>
+      <div class="r">06 / 15</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr auto;gap:1.4vh;padding-bottom:3vh;min-height:0">
       <div data-anim="line" style="display:flex;justify-content:space-between;align-items:flex-end;gap:2vw">
         <div style="display:flex;flex-direction:column;gap:.6vh">
-          <div class="t-meta">PHYSICAL LAYER · DUAL-ISP · 3 AP · THINKSTATION P320 INTERNAL BUS · STORAGE &amp; NIC</div>
-          <h2 style="font-family:var(--sans);font-weight:200;font-size:min(3.6vw,6.2vh);line-height:1.02;letter-spacing:-.03em;color:var(--text-primary)">
-            Diagram Lengkap Hardware &amp; Jaringan Fisik
+          <div class="t-meta">PHYSICAL LAYER · DUAL-ISP · 3 AP · 11 TAILSCALE PEER NODES · THINKSTATION P320 BUS &amp; STORAGE</div>
+          <h2 style="font-family:var(--sans);font-weight:200;font-size:min(3.5vw,6vh);line-height:1.02;letter-spacing:-.03em;color:var(--text-primary)">
+            Diagram Lengkap Hardware, Jaringan &amp; Peer Mesh
           </h2>
         </div>
-        <div class="t-meta" style="color:var(--accent-ink);white-space:nowrap">GUNAKAN + / − UNTUK ZOOM DETAIL</div>
+        <div class="t-meta" style="color:var(--accent-ink);white-space:nowrap">KLIK + / − &amp; DRAG UNTUK ZOOM DETAIL</div>
       </div>
       <div data-anim="up" class="mermaid-stage">
         <div class="mermaid-tools" aria-label="Kontrol Zoom Diagram">
@@ -2088,57 +2087,59 @@ flowchart LR
           <div class="mermaid-canvas">
             <pre class="mermaid">
 flowchart LR
-  subgraph EXT["1. UPLINK ISP &amp; CLOUD EDGE"]
+  subgraph EXT["1. UPLINK ISP &amp; OVERLAY CONTROL"]
     direction TB
     ISP_IH["ISP 1: IndiHome&lt;br/&gt;Jalur Operasional Pegawai"]
-    ISP_DK["ISP 2: Dukodu&lt;br/&gt;Jalur Khusus Server Produksi"]
+    ISP_DK["ISP 2: Dukodu&lt;br/&gt;Jalur Khusus Server"]
     CF_EDGE["Cloudflare Edge&lt;br/&gt;DNS *.dvlpid.my.id &amp; QUIC"]
-    ADMIN_DEV["Perangkat Admin Remote&lt;br/&gt;Laptop Lead · PC IT · Termux"]
+    TS_CTRL["Tailscale Mesh (WireGuard)&lt;br/&gt;Saat ini: ihza2karunia@gmail.com&lt;br/&gt;TARGET: ipds6104@gmail.com"]
   end
 
-  subgraph AP_LAN["2. LAYER AKSES (3 AP) &amp; KLIEN"]
+  subgraph PEERS["2. ACCESS POINTS (3 AP) &amp; 11 PERANGKAT TERHUBUNG"]
     direction TB
-    AP1["Access Point 1 (IndiHome)&lt;br/&gt;Wi-Fi Ruang Kerja A"]
-    AP2["Access Point 2 (IndiHome)&lt;br/&gt;Wi-Fi Ruang Kerja B"]
-    CLIENT_PC["Puluhan PC &amp; Laptop Pegawai&lt;br/&gt;Workstation BPS Mempawah"]
-    AP3["Access Point 3 (Dukodu)&lt;br/&gt;SSID: OPTI-004F88-5G (5GHz)"]
+    AP12["AP 1 &amp; AP 2 (IndiHome)&lt;br/&gt;Distribusi Ruang Kerja Pegawai"]
+    PC_STAFF["PC &amp; Laptop Pegawai Umum&lt;br/&gt;Akses Aplikasi Web BPS"]
+    PC_MESH["5 PC Windows di Tailscale:&lt;br/&gt;bps (100.84.246.88 · 20-Core GPU)&lt;br/&gt;bps6104-2 (100.85.109.16)&lt;br/&gt;bps6104-7 (100.88.216.97)&lt;br/&gt;bps6104-8 (100.120.37.93)&lt;br/&gt;desktop-ltkna8u (100.118.237.86)"]
+    DEV_MOB["5 Dev Laptop &amp; Mobile di Tailscale:&lt;br/&gt;victus-1 (100.104.4.98) · victus (100.90.3.32)&lt;br/&gt;localhost-0 (100.77.129.117 · PRoot/Termux)&lt;br/&gt;poco-f7 (100.87.188.16) · xiaomi-pad-6 (100.105.201.64)"]
+    AP3["AP 3 (Dukodu · 5GHz)&lt;br/&gt;SSID: OPTI-004F88-5G"]
   end
 
   subgraph TS_NIC["3. INTERFACES THINKSTATION P320"]
     direction TB
     NIC_WIFI["USB Wi-Fi 6: Realtek 802.11ax&lt;br/&gt;wlxccbabdebb144 · 192.168.1.54/24&lt;br/&gt;STATUS: UP / AKTIF"]
     NIC_LAN["Onboard LAN: Intel I219-LM&lt;br/&gt;eno1 · Gigabit Ethernet&lt;br/&gt;STATUS: DOWN (Kandidat RJ45)"]
-    NIC_TS["VPN Overlay: tailscale0&lt;br/&gt;100.101.49.42/32 · Mesh Admin"]
+    NIC_TS["VPN Overlay: tailscale0&lt;br/&gt;100.101.49.42/32 · agy-mesh :8484"]
     NIC_DK["Virtual Fabric: docker0 10.0.0.1&lt;br/&gt;+ 36 Docker Bridges (br-*) &amp; veth"]
   end
 
-  subgraph TS_BUS["4. INTERNAL HARDWARE · THINKSTATION P320"]
+  subgraph TS_BUS["4. INTERNAL BUS · THINKSTATION P320"]
     direction TB
-    CPU["CPU: Intel Xeon E3-1220 v6&lt;br/&gt;4 Cores @ 3.00GHz · x86-64 NUMA0"]
-    RAM["RAM: 15 GiB DDR4&lt;br/&gt;6.7 GiB Used · 8.8 GiB Avail&lt;br/&gt;+ 11 GiB Swap"]
+    CPU["CPU: Intel Xeon E3-1220 v6&lt;br/&gt;4 Cores @ 3.00GHz · x86-64"]
+    RAM["RAM: 15 GiB DDR4&lt;br/&gt;6.7G Used · 8.8G Avail + 11G Swap"]
     GPU["GPU: NVIDIA Quadro P600&lt;br/&gt;GP107GL · PCIe"]
-    CHIPSET["Chipset Intel Q170/CM236&lt;br/&gt;SATA AHCI + USB 2.0/3.0 Hub"]
+    CHIPSET["Chipset Intel Q170/CM236&lt;br/&gt;SATA AHCI + USB 2.0/3.0"]
   end
 
   subgraph TS_STOR["5. STORAGE &amp; PERIFERAL (1 TB WD)"]
     direction TB
     HDD["HDD SATA 1 TB&lt;br/&gt;WDC WD10EZEX-08WN4A0 (931.5G)"]
     P_EXT4["sda1: 442.5 GB ext4 (/)&lt;br/&gt;Ubuntu 24.04 &amp; Docker (48% Used)"]
-    P_NTFS["sda3 230.1G + sda4 256.7G NTFS&lt;br/&gt;+ sda5 1G (Partisi Legacy/Headroom)"]
+    P_NTFS["sda3 230.1G + sda4 256.7G NTFS&lt;br/&gt;+ sda5 1G (Legacy Headroom)"]
     P_EFI["sda6: 1 GB vfat (/boot/efi)&lt;br/&gt;+ DVD-RAM GHC0N + Realtek Card"]
   end
 
-  ISP_IH --> AP1
-  ISP_IH --> AP2
-  AP1 --> CLIENT_PC
-  AP2 --> CLIENT_PC
-  CLIENT_PC -->|"HTTPS via IndiHome"| CF_EDGE
+  ISP_IH --> AP12
+  AP12 --> PC_STAFF
+  AP12 --> PC_MESH
+  PC_STAFF -->|"HTTPS"| CF_EDGE
+  PC_MESH &lt;--&gt;|"WireGuard Mesh"| TS_CTRL
+  DEV_MOB &lt;--&gt;|"WireGuard / SOCKS5"| TS_CTRL
+  TS_CTRL &lt;--&gt;|"Mesh :8484 + SSH"| NIC_TS
 
   ISP_DK --> AP3
   AP3 -->|"Wi-Fi 6 5GHz"| NIC_WIFI
   AP3 -.->|"Roadmap Kabel LAN"| NIC_LAN
   NIC_WIFI -->|"2x cloudflared QUIC"| CF_EDGE
-  ADMIN_DEV -->|"Tailscale Mesh / SSH"| NIC_TS
 
   NIC_WIFI --- CPU
   NIC_LAN -.- CPU
@@ -2155,28 +2156,85 @@ flowchart LR
   style ISP_DK fill:#002FA7,stroke:#002FA7,color:#ffffff
   style AP3 fill:#002FA7,stroke:#002FA7,color:#ffffff
   style NIC_WIFI fill:#002FA7,stroke:#002FA7,color:#ffffff
+  style NIC_TS fill:#002FA7,stroke:#002FA7,color:#ffffff
+  style TS_CTRL fill:#fafaf8,stroke:#002FA7,color:#002FA7
   style NIC_LAN fill:#f0f0ee,stroke:#737373,color:#525252,stroke-dasharray:4 4
   style CPU fill:#0a0a0a,stroke:#0a0a0a,color:#fafaf8
   style P_EXT4 fill:#0a0a0a,stroke:#0a0a0a,color:#fafaf8
-  style CF_EDGE fill:#fafaf8,stroke:#002FA7,color:#002FA7
             </pre>
           </div>
         </div>
       </div>
       <div data-anim="up" style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--grey-2);padding-top:1vh;gap:2vw">
-        <span class="t-meta">TEMUAN AUDIT 1: NIC AKTIF ADALAH USB WI-FI 6 (REKOMENDASI TARIK KABEL LAN KE ENO1)</span>
-        <span class="t-meta" style="color:var(--accent-ink)">TEMUAN AUDIT 2: 486 GB PARTISI NTFS TERSEDIA UNTUK EKSPANSI STORAGE LINUX</span>
+        <span class="t-meta">11 NODE TERDAFTAR DI TAILSCALE (1 SERVER + 5 PC WINDOWS BPS + 2 LAPTOP LINUX + 3 MOBILE)</span>
+        <span class="t-meta" style="color:var(--accent-ink)">AKSI WAJIB: PINDAHKAN TAILNET KE IPDS6104@GMAIL.COM &amp; TARIK KABEL LAN ENO1</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 07 · S15 Matrix + Hero Stat (Real Coolify Apps Inventory) · GREY -->
-<section class="slide grey" data-layout="S15" data-animate="matrix-fill" data-slide-id="coolify-ecosystem">
+<!-- SLIDE 07 · S04 Six Cells (Tailscale + Connected PCs + AGY Mesh) · GREY -->
+<section class="slide grey" data-layout="S04" data-animate="grid-reveal" data-slide-id="tailscale-agymesh">
   <div class="canvas-card">
     <div class="chrome-min tight">
-      <div class="l">06 · EKOSISTEM APLIKASI COOLIFY</div>
-      <div class="r">07 / 13</div>
+      <div class="l">06 · TAILSCALE OVERLAY, PC TERHUBUNG &amp; UNIVERSAL AGY MESH</div>
+      <div class="r">07 / 15</div>
+    </div>
+    <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:2vh;padding-bottom:3.5vh">
+      <div data-anim="head" style="display:flex;flex-direction:column;gap:1.2vh">
+        <div class="t-meta">MULTI-PC ORCHESTRATION · 11 TAILSCALE NODES · HTTP MESH PORT 8484</div>
+        <h2 style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,8.2vh);line-height:1;letter-spacing:-.03em;color:var(--text-primary)">
+          Tailscale &amp; Universal AGY Mesh Lintas PC
+        </h2>
+      </div>
+      <div class="sub-grid-3-2" data-anim="up" style="margin-top:1vh">
+        <article class="sub-card" style="background:var(--paper)">
+          <span class="nb-corner">01</span>
+          <i data-lucide="shield"></i>
+          <h3 class="ttl">Tailscale Overlay (11 Node)</h3>
+          <p class="desc">Jaringan private WireGuard menyatukan server Dukodu dengan PC kantor IndiHome &amp; perangkat mobile tanpa buka port publik.</p>
+        </article>
+        <article class="sub-card" style="background:var(--paper)">
+          <span class="nb-corner">02</span>
+          <i data-lucide="monitor"></i>
+          <h3 class="ttl">5 PC Windows BPS Terhubung</h3>
+          <p class="desc"><code style="font-family:var(--mono)">bps</code> (20-Core GPU), <code style="font-family:var(--mono)">bps6104-2</code>, <code style="font-family:var(--mono)">bps6104-7</code>, <code style="font-family:var(--mono)">bps6104-8</code>, &amp; <code style="font-family:var(--mono)">desktop-ltkna8u</code> terhubung langsung ke mesh.</p>
+        </article>
+        <article class="sub-card" style="background:var(--paper)">
+          <span class="nb-corner">03</span>
+          <i data-lucide="smartphone"></i>
+          <h3 class="ttl">Laptop Dev &amp; Mobile Agent</h3>
+          <p class="desc"><code style="font-family:var(--mono)">victus-1</code> / <code style="font-family:var(--mono)">victus</code> (Linux Dev), <code style="font-family:var(--mono)">localhost-0</code> (Termux PRoot orchestrator), <code style="font-family:var(--mono)">poco-f7</code>, &amp; <code style="font-family:var(--mono)">xiaomi-pad-6</code>.</p>
+        </article>
+        <article class="sub-card accent">
+          <span class="nb-corner">04</span>
+          <i data-lucide="cpu"></i>
+          <h3 class="ttl">Universal AGY Mesh (:8484)</h3>
+          <p class="desc">Daemon Bun HTTP API di atas Tailscale: remote command <code style="font-family:var(--mono)">agy-ops</code> (&lt;100ms), shared context blackboard, delegasi <code style="font-family:var(--mono)">ask_peer</code>, &amp; peer screen capture.</p>
+        </article>
+        <article class="sub-card" style="background:var(--paper)">
+          <span class="nb-corner">05</span>
+          <i data-lucide="radio"></i>
+          <h3 class="ttl">Zero 3rd-Party VPN Rule</h3>
+          <p class="desc">Klien dilarang mengaktifkan VPN pihak ketiga (WARP/Outline/OpenVPN) saat akses mesh agar rute UDP NAT traversal Tailscale tidak terblokir.</p>
+        </article>
+        <article class="sub-card" style="background:var(--paper)">
+          <span class="nb-corner">06</span>
+          <i data-lucide="alert-triangle"></i>
+          <h3 class="ttl">Pindah Akun Tailscale Wajib</h3>
+          <p class="desc">Saat ini masih terdaftar di <code style="font-family:var(--mono)">ihza2karunia@gmail.com</code> (akun pribadi) — belum ideal untuk instansi, wajib dipindah ke <code style="font-family:var(--mono)">ipds6104@gmail.com</code>.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 08 · S15 Matrix + Hero Stat (Real Coolify Apps Inventory) · LIGHT -->
+<section class="slide light" data-layout="S15" data-animate="matrix-fill" data-slide-id="coolify-ecosystem">
+  <div class="canvas-card">
+    <div class="chrome-min tight">
+      <div class="l">07 · EKOSISTEM APLIKASI COOLIFY</div>
+      <div class="r">08 / 15</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr auto;gap:2.2vh;padding-bottom:3.5vh;min-height:0">
       <div data-anim="line" style="display:flex;flex-direction:column;gap:1vh">
@@ -2194,7 +2252,7 @@ flowchart LR
         <div class="matrix-cell"><div class="m-ttl">AI Proxy &amp; MCP</div><div class="m-sub">mcp / router / oc / ai.dvlpid.my.id</div></div>
         <div class="matrix-cell"><div class="m-ttl">MediaVault &amp; Search</div><div class="m-sub">store.dvlpid.my.id + Meilisearch</div></div>
         <div class="matrix-cell"><div class="m-ttl">Bisnis &amp; Quant Apps</div><div class="m-sub">aksaracat / fintr / caikue / forex</div></div>
-        <div class="matrix-cell"><div class="m-ttl">Auth &amp; Secret Vault</div><div class="m-sub">auth (rIDM) · secrets (Infisical)</div></div>
+        <div class="matrix-cell"><div class="m-ttl">rIDM SSO &amp; Infisical</div><div class="m-sub">auth (:8096) · secrets (:8095)</div></div>
         <div class="matrix-cell"><div class="m-ttl">Observability &amp; DB</div><div class="m-sub">obv / sre / sql / pha.dvlpid.my.id</div></div>
         <div class="matrix-cell"><div class="m-ttl">Automation (21c)</div><div class="m-sub">n8n (5c) · wind (7c) · paca (9c)</div></div>
         <div class="matrix-cell is-accent"><div class="m-ttl">Control Plane</div><div class="m-sub">Coolify v4.7.6 · Traefik v3.6 · Portainer</div></div>
@@ -2210,12 +2268,12 @@ flowchart LR
   </div>
 </section>
 
-<!-- SLIDE 08 · S14 Loop Diagram · LIGHT -->
-<section class="slide light" data-layout="S14" data-animate="loop-form" data-slide-id="cicd-pipeline">
+<!-- SLIDE 09 · S14 Loop Diagram · GREY -->
+<section class="slide grey" data-layout="S14" data-animate="loop-form" data-slide-id="cicd-pipeline">
   <div class="canvas-card">
     <div class="chrome-min">
-      <div class="l">07 · OTOMASI DEPLOYMENT</div>
-      <div class="r">08 / 13</div>
+      <div class="l">08 · OTOMASI DEPLOYMENT</div>
+      <div class="r">09 / 15</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:3vh;padding-bottom:3.5vh">
       <div data-anim="line" style="display:flex;flex-direction:column;gap:1.2vh">
@@ -2230,28 +2288,28 @@ flowchart LR
             <span class="t-cat accent">01</span>
             <div>
               <h3 class="t-body-emp">Push Kode ke Branch main</h3>
-              <p class="t-body-sm">Tim IT melakukan commit &amp; push perubahan aplikasi ke repository GitHub (<code style="font-family:var(--mono)">ipds6104</code> / <code style="font-family:var(--mono)">ihkaru</code>).</p>
+              <p class="t-body-sm">Tim IT commit &amp; push ke GitHub (<code style="font-family:var(--mono)">ipds6104</code> / <code style="font-family:var(--mono)">ihkaru</code>) — tanpa pernah menyertakan file <code style="font-family:var(--mono)">.env</code> rahasia.</p>
             </div>
           </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:1.6vw;align-items:start;border-top:1px solid var(--grey-2);padding-top:1.6vh">
             <span class="t-cat accent">02</span>
             <div>
               <h3 class="t-body-emp">GitHub Apps Webhook Firing</h3>
-              <p class="t-body-sm">3 integrasi GitHub Apps mengirim payload event push secara real-time melalui Cloudflare Tunnel ke <code style="font-family:var(--mono)">coolify.dvlpid.my.id</code>.</p>
+              <p class="t-body-sm">3 integrasi GitHub Apps mengirim event push real-time via Cloudflare Tunnel ke <code style="font-family:var(--mono)">coolify.dvlpid.my.id</code>.</p>
             </div>
           </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:1.6vw;align-items:start;border-top:1px solid var(--grey-2);padding-top:1.6vh">
             <span class="t-cat accent">03</span>
             <div>
-              <h3 class="t-body-emp">Build Docker Image / Pull GHCR</h3>
-              <p class="t-body-sm">Coolify v4.7.6 membangun image baru atau menarik image terbaru dari GHCR, lalu memverifikasi healthcheck container.</p>
+              <h3 class="t-body-emp">Build Docker Image &amp; Inject Secrets</h3>
+              <p class="t-body-sm">Coolify build image / pull GHCR, menyuntikkan secret dari Infisical/env, dan memverifikasi healthcheck.</p>
             </div>
           </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:1.6vw;align-items:start;border-top:1px solid var(--grey-2);border-bottom:1px solid var(--grey-2);padding:1.6vh 0">
             <span class="t-cat accent">04</span>
             <div>
               <h3 class="t-body-emp">Traefik v3.6 Switch &amp; Live HTTPS</h3>
-              <p class="t-body-sm">Container lama digantikan container baru secara otomatis dan langsung tayang di subdomain <code style="font-family:var(--mono)">*.dvlpid.my.id</code>.</p>
+              <p class="t-body-sm">Container baru menggantikan container lama otomatis dan langsung tayang di subdomain <code style="font-family:var(--mono)">*.dvlpid.my.id</code>.</p>
             </div>
           </div>
         </div>
@@ -2272,19 +2330,19 @@ flowchart LR
             </div>
           </div>
           <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.8vw;width:100%">
-            <div class="card-fill" style="background:var(--grey-1);padding:1vh .8vw;border-top:2px solid var(--accent)">
+            <div class="card-fill" style="background:var(--paper);padding:1vh .8vw;border-top:2px solid var(--accent)">
               <div class="t-meta" style="color:var(--accent-ink)">01</div>
               <div class="t-body-sm" style="font-weight:500">Git Push</div>
             </div>
-            <div class="card-fill" style="background:var(--grey-1);padding:1vh .8vw;border-top:2px solid var(--ink)">
+            <div class="card-fill" style="background:var(--paper);padding:1vh .8vw;border-top:2px solid var(--ink)">
               <div class="t-meta">02</div>
               <div class="t-body-sm" style="font-weight:500">Webhook</div>
             </div>
-            <div class="card-fill" style="background:var(--grey-1);padding:1vh .8vw;border-top:2px solid var(--ink)">
+            <div class="card-fill" style="background:var(--paper);padding:1vh .8vw;border-top:2px solid var(--ink)">
               <div class="t-meta">03</div>
               <div class="t-body-sm" style="font-weight:500">Build</div>
             </div>
-            <div class="card-fill" style="background:var(--grey-1);padding:1vh .8vw;border-top:2px solid var(--accent)">
+            <div class="card-fill" style="background:var(--paper);padding:1vh .8vw;border-top:2px solid var(--accent)">
               <div class="t-meta" style="color:var(--accent-ink)">04</div>
               <div class="t-body-sm" style="font-weight:500">Redeploy</div>
             </div>
@@ -2295,19 +2353,19 @@ flowchart LR
   </div>
 </section>
 
-<!-- SLIDE 09 · S17 System Diagram #3 (DEDICATED SOFTWARE, INGRESS, 78 CONTAINERS & CI/CD MERMAID) · DARK -->
+<!-- SLIDE 10 · S17 System Diagram #3 (DEDICATED SOFTWARE, INGRESS, INFISICAL, AGY MESH, 78 CONTAINERS & CI/CD MERMAID) · DARK -->
 <section class="slide dark" data-layout="S17" data-animate="system-diagram" data-slide-id="mermaid-software">
   <div class="canvas-card">
     <div class="chrome-min tight">
-      <div class="l">08 · MERMAID #3 — ARSITEKTUR SOFTWARE, INGRESS, 78 CONTAINER &amp; CI/CD (LENGKAP)</div>
-      <div class="r">09 / 13</div>
+      <div class="l">09 · MERMAID #3 — ARSITEKTUR SOFTWARE, INGRESS, INFISICAL, AGY MESH &amp; 78 CONTAINER (LENGKAP)</div>
+      <div class="r">10 / 15</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr auto;gap:1.4vh;padding-bottom:3vh;min-height:0">
       <div data-anim="line" style="display:flex;justify-content:space-between;align-items:flex-end;gap:2vw">
         <div style="display:flex;flex-direction:column;gap:.6vh">
-          <div class="t-meta">SOFTWARE LAYER · CLOUDFLARED HA · TRAEFIK v3.6 · COOLIFY v4.7.6 · 78 CONTAINERS · DATA LAYER</div>
-          <h2 style="font-family:var(--sans);font-weight:200;font-size:min(3.5vw,6vh);line-height:1.02;letter-spacing:-.03em;color:var(--paper)">
-            Diagram Lengkap Software, Container &amp; CI/CD
+          <div class="t-meta">SOFTWARE LAYER · CLOUDFLARED HA · TRAEFIK v3.6 · INFISICAL VAULT · TAILSCALE &amp; AGY MESH · 78 CONTAINERS</div>
+          <h2 style="font-family:var(--sans);font-weight:200;font-size:min(3.4vw,5.8vh);line-height:1.02;letter-spacing:-.03em;color:var(--paper)">
+            Diagram Lengkap Software, Mesh, Vault &amp; CI/CD
           </h2>
         </div>
         <div class="t-meta" style="color:var(--accent-ink-inverse);white-space:nowrap">KLIK + / − &amp; DRAG UNTUK INSPEKSI</div>
@@ -2323,51 +2381,52 @@ flowchart LR
           <div class="mermaid-canvas">
             <pre class="mermaid">
 flowchart LR
-  subgraph SW_CICD["1. GITOPS &amp; CI/CD"]
+  subgraph SW_CICD["1. GITOPS, CI/CD &amp; MESH PEERS"]
     direction TB
     DEV_GIT["Tim IT (3 Orang)&lt;br/&gt;git push origin main"]
-    GH_REPO["GitHub Repositories&lt;br/&gt;ipds6104 · ihkaru"]
-    GH_REG["GHCR Image Registry&lt;br/&gt;sipedas · aina · cerdas · lumis"]
+    GH_REPO["GitHub Repos + GHCR&lt;br/&gt;ipds6104 · ihkaru"]
     GH_HOOK["3x GitHub Apps Webhook&lt;br/&gt;Auto-Deploy Trigger"]
-    DEV_GIT --> GH_REPO
-    GH_REPO --> GH_HOOK
-    GH_REPO -.->|"CI Image"| GH_REG
+    MESH_PEERS["Tailscale Overlay (11 Node)&lt;br/&gt;bps · bps6104-2/7/8 · victus-1 · localhost-0&lt;br/&gt;Akun: ihza2karunia@ → Target: ipds6104@"]
+    DEV_GIT --> GH_REPO --> GH_HOOK
   end
 
-  subgraph SW_ING["2. EDGE &amp; INGRESS (*.dvlpid.my.id)"]
+  subgraph SW_ING["2. EDGE &amp; DUAL-PATH INGRESS"]
     direction TB
-    CF_EDGE2["Cloudflare Edge DNS &amp; TLS&lt;br/&gt;Wildcard *.dvlpid.my.id"]
+    CF_EDGE2["Cloudflare Edge DNS &amp; TLS&lt;br/&gt;*.dvlpid.my.id → Target Domain BPS"]
     CF_HA["Dual HA cloudflared (QUIC)&lt;br/&gt;cloudflared + cloudflared-replica"]
-    DIR_PORT["Direct Host-Port Routes&lt;br/&gt;coolify:8000 · auth:8096 · secrets:8095&lt;br/&gt;paca:8085 · aina:8090 · aina-wa:8082&lt;br/&gt;router:20128 · ai:8045"]
-    TRAEFIK2["Traefik v3.6 (coolify-proxy)&lt;br/&gt;Wildcard :80/:443 → 36 Docker Bridges"]
+    DIR_PORT["8 Direct Host-Port Services&lt;br/&gt;coolify:8000 · auth:8096 · secrets:8095&lt;br/&gt;paca:8085 · aina:8090 · aina-wa:8082&lt;br/&gt;router:20128 · ai:8045"]
+    TRAEFIK2["Traefik v3.6 (coolify-proxy)&lt;br/&gt;Wildcard :80/:443 → 36 Bridges"]
     CF_EDGE2 &lt;--&gt; CF_HA
     CF_HA --> DIR_PORT
     CF_HA --> TRAEFIK2
   end
 
-  subgraph SW_CTRL["3. HOST DAEMONS &amp; CONTROL PLANE"]
+  subgraph SW_CTRL["3. HOST DAEMONS, VAULT &amp; CONTROL PLANE"]
     direction TB
-    OS_DAEMON["Host OS: Ubuntu 24.04.4 LTS · Docker v29.5.0&lt;br/&gt;tailscaled · agy-mesh :8484 · microsocks&lt;br/&gt;warp-svc · sshd · cron"]
+    AGY_HOST["Host OS Ubuntu 24.04.4 · Docker v29.5.0&lt;br/&gt;tailscaled · agy-mesh (:8484) · microsocks&lt;br/&gt;Shared Blackboard · ask_peer · Screen Capture&lt;br/&gt;warp-svc · sshd · cron"]
+    INF_VAULT["Infisical Secret Vault (secrets:8095)&lt;br/&gt;Universal Auth · dev/prod · agy-infisical&lt;br/&gt;Zero Hardcoded Secrets + Audit Trail"]
     COOL_CP["Coolify v4.7.6 Control Plane&lt;br/&gt;coolify + coolify-db (PG15)&lt;br/&gt;+ coolify-redis-7 + sentinel v1.1.5"]
-    SEC_OBS["Auth, Secrets, Ops &amp; Remote&lt;br/&gt;rIDM Auth SSO (auth) · Infisical (secrets)&lt;br/&gt;OpenObserve v0.14.5 (obv) · Shipper (sre)&lt;br/&gt;Portainer CE (:9443) · RustDesk (hbbs/hbbr)"]
+    SEC_OBS["Auth, Ops &amp; Observability&lt;br/&gt;rIDM Auth SSO (auth:8096 · OIDC/SAML)&lt;br/&gt;OpenObserve (obv) · Context Shipper (sre)&lt;br/&gt;Portainer CE (:9443) · RustDesk (hbbs/hbbr)"]
   end
 
   subgraph SW_APPS["4. WORKLOAD CONTAINERS (78 TOTAL · 23 APPS · 5 SERVICES)"]
     direction TB
-    W_BPS["Core BPS &amp; Statistik&lt;br/&gt;Cerdas 6c: app / api / editor / worker / sched / reverb&lt;br/&gt;GardaData (gardadata) · SIPEDAS/DokterV (admin)&lt;br/&gt;Katalis 5c: katalis / api-katalis / ws / worker / sched"]
-    W_AI["AI, Chatbot &amp; Knowledge&lt;br/&gt;AINA (aina) · WA Bots 2x (aina-wa, wa)&lt;br/&gt;Lumis AI (chat) · FlashLearn (learn) · Factor (factor)&lt;br/&gt;MCP (mcp) · 9Router (router) · OpenCode+WARP (oc)"]
-    W_AUTO["Automation, Media &amp; Bisnis&lt;br/&gt;n8n v2.10.4 5c (n8n) · Windmill 7c (wind)&lt;br/&gt;Paca 9c (paca: Caddy/API/Web/RT/Runner)&lt;br/&gt;MediaVault (store) · Aksaracat · Fintr · Cakue · Forex"]
+    W_BPS["Core BPS &amp; Statistik&lt;br/&gt;Cerdas 6c (app/api/editor/worker/sched/reverb)&lt;br/&gt;GardaData (gardadata) · SIPEDAS/DokterV (admin)&lt;br/&gt;Katalis 5c (katalis/api/ws/worker/sched)"]
+    W_AI["AI, Chatbot &amp; Knowledge&lt;br/&gt;AINA (aina) · WA Bots 2x (aina-wa, wa)&lt;br/&gt;Lumis AI (chat) · FlashLearn (learn) · Factor&lt;br/&gt;MCP (mcp) · 9Router · OpenCode+WARP (oc)"]
+    W_AUTO["Automation, Media &amp; Bisnis&lt;br/&gt;n8n v2.10.4 5c · Windmill 7c · Paca 9c&lt;br/&gt;MediaVault (store) · Aksaracat · Fintr&lt;br/&gt;Cakue/Si-Aksi · Forex Quant"]
   end
 
   subgraph SW_DATA["5. DATA, CACHE &amp; SEARCH LAYER"]
     direction TB
-    D_SQL["Relational DBs (7 Standalone + Bundled)&lt;br/&gt;PostgreSQL 15 / 16 / 18 (9+ instances)&lt;br/&gt;MariaDB 11 · MySQL (2x) · phpMyAdmin (sql, pha)"]
+    D_SQL["Relational DBs (7 Standalone + Bundled)&lt;br/&gt;PostgreSQL 15/16/18 (9+ instances)&lt;br/&gt;MariaDB 11 · MySQL (2x) · phpMyAdmin (sql/pha)"]
     D_NOSQL["Cache, Search &amp; Object Storage&lt;br/&gt;Redis 6 / 7.2 · Valkey 8 / 9&lt;br/&gt;Meilisearch v1.13 · MinIO S3"]
   end
 
   GH_HOOK -->|"HTTPS Webhook"| CF_EDGE2
-  GH_REG -->|"Docker Pull"| COOL_CP
+  MESH_PEERS &lt;--&gt;|"HTTP :8484 + SSH"| AGY_HOST
+  MESH_PEERS -->|"infisical run"| INF_VAULT
   DIR_PORT --> COOL_CP
+  DIR_PORT --> INF_VAULT
   DIR_PORT --> SEC_OBS
   DIR_PORT --> W_AI
   DIR_PORT --> W_AUTO
@@ -2375,10 +2434,13 @@ flowchart LR
   TRAEFIK2 --> W_AI
   TRAEFIK2 --> W_AUTO
   TRAEFIK2 --> SEC_OBS
+  INF_VAULT -->|"Inject Secrets"| COOL_CP
+  INF_VAULT -->|"Inject Secrets"| SEC_OBS
+  INF_VAULT -->|"Inject Secrets"| W_BPS
   COOL_CP -->|"Build &amp; Redeploy"| W_BPS
   COOL_CP -->|"Build &amp; Redeploy"| W_AI
   COOL_CP -->|"Build &amp; Redeploy"| W_AUTO
-  OS_DAEMON --- COOL_CP
+  AGY_HOST --- COOL_CP
   W_BPS --> D_SQL
   W_BPS --> D_NOSQL
   W_AI --> D_SQL
@@ -2387,125 +2449,154 @@ flowchart LR
   W_AUTO --> D_NOSQL
   SEC_OBS --> D_SQL
   SEC_OBS --> D_NOSQL
+  INF_VAULT --> D_SQL
+  INF_VAULT --> D_NOSQL
 
   style CF_HA fill:#002FA7,stroke:#002FA7,color:#ffffff
   style TRAEFIK2 fill:#002FA7,stroke:#002FA7,color:#ffffff
+  style INF_VAULT fill:#002FA7,stroke:#002FA7,color:#ffffff
+  style AGY_HOST fill:#0a0a0a,stroke:#002FA7,color:#fafaf8
   style COOL_CP fill:#0a0a0a,stroke:#0a0a0a,color:#fafaf8
-  style GH_HOOK fill:#fafaf8,stroke:#002FA7,color:#002FA7
-  style W_BPS fill:#fafaf8,stroke:#002FA7,color:#0a0a0a
+  style MESH_PEERS fill:#fafaf8,stroke:#002FA7,color:#002FA7
   style D_SQL fill:#0a0a0a,stroke:#0a0a0a,color:#fafaf8
             </pre>
           </div>
         </div>
       </div>
       <div data-anim="up" style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(var(--paper-rgb),.22);padding-top:1vh;gap:2vw">
-        <span class="t-meta">INGRESS DUAL-PATH: 8 DIRECT HOST-PORT SERVICES + WILDCARD TRAEFIK v3.6 (:80/:443)</span>
+        <span class="t-meta">INFISICAL VAULT (:8095) + RIDM SSO (:8096) + AGY MESH (:8484) + COOLIFY v4.7.6</span>
         <span class="t-meta" style="color:var(--accent-ink-inverse)">TOTAL TERVERIFIKASI: 78 CONTAINERS · 36 DOCKER BRIDGES</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 10 · S04 Six Cells · LIGHT -->
-<section class="slide light" data-layout="S04" data-animate="grid-reveal" data-slide-id="hardware-compute">
+<!-- SLIDE 11 · S05 Three Layers (Importance of Infisical Vault) · LIGHT -->
+<section class="slide light" data-layout="S05" data-animate="stack-build" data-slide-id="infisical-importance">
   <div class="canvas-card">
-    <div class="chrome-min tight">
-      <div class="l">09 · RINGKASAN 6 ELEMEN KRITIS</div>
-      <div class="r">10 / 13</div>
+    <div class="chrome-min">
+      <div class="l">10 · KEAMANAN KREDENSIAL TERPUSAT</div>
+      <div class="r">11 / 15</div>
     </div>
-    <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:2vh;padding-bottom:3.5vh">
-      <div data-anim="head" style="display:flex;flex-direction:column;gap:1.2vh">
-        <div class="t-meta">CORE INFRASTRUCTURE COMPONENTS · 6 ELEMEN KUNCI</div>
-        <h2 style="font-family:var(--sans);font-weight:200;font-size:min(4.8vw,8.6vh);line-height:1;letter-spacing:-.03em;color:var(--text-primary)">
-          Peran Masing-Masing Komponen
+    <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:3vh;padding-bottom:3vh">
+      <div data-anim="head" style="display:flex;flex-direction:column;gap:1.4vh">
+        <div class="t-meta">INFISICAL SECRET VAULT · SECRETS.DVLPID.MY.ID (:8095)</div>
+        <h2 style="font-family:var(--sans);font-weight:200;font-size:min(4.8vw,8.4vh);line-height:1;letter-spacing:-.03em;color:var(--text-primary)">
+          Mengapa Infisical Wajib di Tim IT Kita?
         </h2>
       </div>
-      <div class="sub-grid-3-2" data-anim="up" style="margin-top:1vh">
-        <article class="sub-card">
-          <span class="nb-corner">01</span>
-          <i data-lucide="cpu"></i>
-          <h3 class="ttl">ThinkStation P320</h3>
-          <p class="desc">Xeon E3-1220 v6 (4C), Quadro P600, 15 GiB RAM, 1 TB WD HDD sebagai node produksi tunggal.</p>
+      <div class="stack-row" style="margin-top:1vh" data-anim="up">
+        <article class="stack-block b-ink">
+          <div class="layer-nb">01 · ANTI-LEAK GUARANTEE</div>
+          <i data-lucide="lock"></i>
+          <h3 class="layer-ttl">Zero Hardcoded Secrets</h3>
+          <p class="layer-desc">Tidak ada lagi password database, token GitHub, atau client secret OIDC yang ter-commit ke repo Git maupun dikirim mentah lewat chat WhatsApp.</p>
+          <div class="layer-tag">NO .ENV IN GIT · NO CHAT SECRETS</div>
         </article>
-        <article class="sub-card">
-          <span class="nb-corner">02</span>
-          <i data-lucide="terminal"></i>
-          <h3 class="ttl">Ubuntu 24.04.4 + Daemons</h3>
-          <p class="desc">OS host desktop menjalankan Docker v29.5.0, Dual HA cloudflared, Tailscale Mesh, dan agy-mesh.</p>
+        <article class="stack-block b-accent">
+          <div class="layer-nb">02 · SINGLE SOURCE OF TRUTH</div>
+          <i data-lucide="key-round"></i>
+          <h3 class="layer-ttl">Universal Auth &amp; Injection</h3>
+          <p class="layer-desc">Infisical (<code style="font-family:var(--mono)">infisical-backend</code> + PG + Redis) memisahkan env <code style="font-family:var(--mono)">dev</code>/<code style="font-family:var(--mono)">prod</code> dan menyuntikkan secret ke runtime via <code style="font-family:var(--mono)">infisical run</code> &amp; <code style="font-family:var(--mono)">agy-infisical</code>.</p>
+          <div class="layer-tag">RUNTIME INJECTION · MULTI-PC SYNC</div>
         </article>
-        <article class="sub-card">
-          <span class="nb-corner">03</span>
-          <i data-lucide="box"></i>
-          <h3 class="ttl">Docker &amp; 36 Bridges</h3>
-          <p class="desc">Mengisolasi 78 container layanan, database (PG/MariaDB/MySQL/Redis/Valkey) &amp; search engine.</p>
-        </article>
-        <article class="sub-card accent">
-          <span class="nb-corner">04</span>
-          <i data-lucide="layers"></i>
-          <h3 class="ttl">Coolify v4.7.6 + Traefik</h3>
-          <p class="desc">PaaS self-hosted + reverse proxy Traefik v3.6 untuk routing *.dvlpid.my.id, SSL &amp; 3x GitHub Apps.</p>
-        </article>
-        <article class="sub-card">
-          <span class="nb-corner">05</span>
-          <i data-lucide="monitor"></i>
-          <h3 class="ttl">PC &amp; Laptop Pegawai</h3>
-          <p class="desc">Perangkat kerja seluruh staf BPS Mempawah yang mengakses aplikasi via ISP IndiHome.</p>
-        </article>
-        <article class="sub-card">
-          <span class="nb-corner">06</span>
-          <i data-lucide="wifi"></i>
-          <h3 class="ttl">Dual-ISP &amp; 3 Access Points</h3>
-          <p class="desc">2 AP IndiHome untuk lantai kerja pegawai, 1 AP Dukodu (5GHz) terdedikasi untuk ThinkStation.</p>
+        <article class="stack-block b-grey">
+          <div class="layer-nb">03 · GOVERNANCE &amp; ROTATION</div>
+          <i data-lucide="refresh-cw"></i>
+          <h3 class="layer-ttl">Audit Trail &amp; Rotasi Instan</h3>
+          <p class="layer-desc">Saat pergantian PIC, penambahan anggota tim IT, atau rotasi kunci rIDM/GardaData/Coolify, perubahan dilakukan terpusat di 1 brankas dengan jejak audit.</p>
+          <div class="layer-tag">CENTRALIZED ROTATION &amp; AUDIT</div>
         </article>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 11 · S13 Three Forces · GREY -->
-<section class="slide grey" data-layout="S13" data-animate="three-forces" data-slide-id="domain-governance">
+<!-- SLIDE 12 · S08 Duo Compare (Dual Governance Migration: Domain + Tailscale Account) · DARK -->
+<section class="slide dark" data-layout="S08" data-animate="duo-mirror" data-slide-id="governance-migration">
+  <div class="canvas-card">
+    <div class="chrome-min">
+      <div class="l">11 · AUDIT TATA KELOLA ASET PERSONAL VS INSTANSI</div>
+      <div class="r">12 / 15</div>
+    </div>
+    <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:2vh;padding-bottom:3.5vh">
+      <div data-anim="head" style="display:flex;flex-direction:column;gap:1.2vh">
+        <div class="t-meta">DUA MIGRASI TATA KELOLA WAJIB · PERSONAL → SATKER BPS 6104</div>
+        <h2 style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,8.2vh);line-height:1;letter-spacing:-.03em;color:var(--paper)">
+          Domain &amp; Tailscale Harus Menjadi Aset BPS
+        </h2>
+      </div>
+      <div class="duo-compare" style="margin-top:2vh">
+        <div class="col">
+          <div class="col-tag"><span class="num" style="color:var(--paper);border-color:rgba(var(--paper-rgb),.45)">01</span> KEPEMILIKAN DOMAIN</div>
+          <h3 class="col-ttl" style="color:var(--paper)">*.dvlpid.my.id</h3>
+          <p class="col-desc" style="color:rgba(var(--paper-rgb),.8)">Domain pribadi Lead yang dipakai sementara untuk 25+ subdomain layanan produksi BPS Mempawah.</p>
+          <ul class="col-list" style="border-top-color:rgba(var(--paper-rgb),.22)">
+            <li><strong>Risiko</strong>: Layanan publik bergantung pada perpanjangan &amp; kendali domain personal</li>
+            <li><strong>Target</strong>: Pengadaan <strong>Domain Resmi BPS Mempawah</strong> sendiri</li>
+            <li><strong>Migrasi Mudah</strong>: Cukup ganti ingress <code style="font-family:var(--mono)">cloudflared</code> &amp; FQDN di Coolify tanpa ubah kode</li>
+          </ul>
+        </div>
+        <span class="vrule" style="background:rgba(var(--paper-rgb),.22)"></span>
+        <div class="col accent">
+          <div class="col-tag"><span class="num" style="color:var(--accent-ink-inverse);border-color:var(--accent-ink-inverse)">02</span> KEPEMILIKAN TAILSCALE MESH</div>
+          <h3 class="col-ttl" style="color:var(--accent-ink-inverse)">ihza2karunia@</h3>
+          <p class="col-desc" style="color:rgba(var(--paper-rgb),.8)">Tailnet saat ini masih memakai akun pribadi <code style="font-family:var(--mono)">ihza2karunia@gmail.com</code> untuk seluruh 11 node.</p>
+          <ul class="col-list" style="border-top-color:rgba(var(--paper-rgb),.22)">
+            <li><strong>Belum Ideal</strong>: Kendali akses remote ThinkStation &amp; 5 PC kantor (<code style="font-family:var(--mono)">bps</code>, <code style="font-family:var(--mono)">bps6104-*</code>) terikat akun personal</li>
+            <li><strong>Target Wajib</strong>: Pindahkan seluruh tailnet ke akun resmi <code style="font-family:var(--mono)">ipds6104@gmail.com</code></li>
+            <li><strong>Dampak Positif</strong>: Akses tim IT (2 anggota + Lead) &amp; <code style="font-family:var(--mono)">agy-mesh</code> dikelola penuh oleh satker IPDS 6104</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 13 · S13 Three Forces (Migration Roadmap) · LIGHT -->
+<section class="slide light" data-layout="S13" data-animate="three-forces" data-slide-id="governance-roadmap">
   <div class="canvas-card">
     <div class="chrome-min tight">
-      <div class="l">10 · TATA KELOLA DOMAIN</div>
-      <div class="r">11 / 13</div>
+      <div class="l">12 · ROADMAP EKSEKUSI MIGRASI</div>
+      <div class="r">13 / 15</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:2.4vh;padding-bottom:3.5vh">
       <div data-anim="line" style="display:flex;flex-direction:column;gap:1vh">
-        <div class="t-meta">DOMAIN GOVERNANCE &amp; ASSET OWNERSHIP</div>
+        <div class="t-meta">3 FASE TRANSISI KEDAULATAN ASET DIGITAL BPS MEMPAWAH</div>
         <h2 style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,8.2vh);line-height:1;letter-spacing:-.03em;color:var(--text-primary)">
-          Transisi dari *.dvlpid.my.id ke Domain Resmi
+          Langkah Terukur Menuju Aset Penuh Satker
         </h2>
       </div>
       <div data-anim="up" style="display:grid;grid-template-columns:5fr 11fr;gap:2vw;align-items:stretch;min-height:0">
         <div style="background:var(--ink);color:var(--paper);padding:3vh 2vw;display:flex;flex-direction:column;justify-content:space-between">
-          <div class="t-meta" style="color:rgba(var(--paper-rgb),.65)">STATUS SAAT INI</div>
-          <div style="font-family:var(--sans);font-weight:200;font-size:min(3.2vw,5.6vh);line-height:1.05;letter-spacing:-.025em">
-            *.dvlpid.my.id<br/>adalah Domain<br/>Pribadi Lead.
+          <div class="t-meta" style="color:rgba(var(--paper-rgb),.65)">PRINSIP ARSITEKTUR</div>
+          <div style="font-family:var(--sans);font-weight:200;font-size:min(3.1vw,5.4vh);line-height:1.05;letter-spacing:-.025em">
+            Bus Factor = 1<br/>Harus Dihapus<br/>Sekarang.
           </div>
           <div class="t-body-sm" style="color:rgba(var(--paper-rgb),.78);border-top:1px solid rgba(var(--paper-rgb),.22);padding-top:1.6vh">
-            Saat ini menampung 25+ subdomain aktif di Cloudflare Tunnel &amp; Traefik. Bukan aset resmi BPS Mempawah.
+            Server, domain, tailnet, dan brankas secret harus tetap berjalan 100% meski terjadi mutasi atau pergantian PIC.
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:1.4vh;justify-content:space-between">
-          <div class="card-fill" style="background:var(--paper);padding:2.2vh 1.8vw;display:grid;grid-template-columns:auto 1fr;gap:1.8vw;align-items:center">
+          <div class="card-fill" style="background:var(--grey-1);padding:2.2vh 1.8vw;display:grid;grid-template-columns:auto 1fr;gap:1.8vw;align-items:center">
             <div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.4vh);line-height:.9;color:var(--accent-display)">01</div>
             <div>
-              <h3 class="t-h-prod">Akselerasi Awal (Current State)</h3>
-              <p class="t-body-sm" style="margin-top:.4vh">Wildcard DNS <code style="font-family:var(--mono)">*.dvlpid.my.id</code> di Cloudflare Tunnel &amp; Traefik memudahkan penerbitan HTTPS otomatis tiap container baru.</p>
+              <h3 class="t-h-prod">Migrasi Tailscale ke ipds6104@gmail.com</h3>
+              <p class="t-body-sm" style="margin-top:.4vh">Re-auth <code style="font-family:var(--mono)">server-thinkstation-p320</code>, PC <code style="font-family:var(--mono)">bps</code>, <code style="font-family:var(--mono)">bps6104-2/7/8</code>, &amp; perangkat tim IT ke tailnet resmi, lalu update IP peer <code style="font-family:var(--mono)">agy-mesh</code>.</p>
             </div>
           </div>
-          <div class="card-fill" style="background:var(--paper);padding:2.2vh 1.8vw;display:grid;grid-template-columns:auto 1fr;gap:1.8vw;align-items:center">
+          <div class="card-fill" style="background:var(--grey-1);padding:2.2vh 1.8vw;display:grid;grid-template-columns:auto 1fr;gap:1.8vw;align-items:center">
             <div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.4vh);line-height:.9;color:var(--accent-display)">02</div>
             <div>
-              <h3 class="t-h-prod">Risiko Tata Kelola (Governance Gap)</h3>
-              <p class="t-body-sm" style="margin-top:.4vh">Layanan instansi pemerintah yang bergantung pada domain personal rentan terhadap risiko kontinuitas aset jika terjadi mutasi/pergantian PIC.</p>
+              <h3 class="t-h-prod">Pengadaan &amp; Cutover Domain Resmi BPS</h3>
+              <p class="t-body-sm" style="margin-top:.4vh">Ajukan domain resmi BPS Mempawah, pasang pada Cloudflare Tunnel &amp; Coolify FQDN secara paralel, lalu alihkan trafik dari <code style="font-family:var(--mono)">*.dvlpid.my.id</code>.</p>
             </div>
           </div>
           <div class="card-fill" style="background:var(--accent);color:var(--accent-on);padding:2.2vh 1.8vw;display:grid;grid-template-columns:auto 1fr;gap:1.8vw;align-items:center">
             <div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.4vh);line-height:.9;color:var(--accent-on)">03</div>
             <div>
-              <h3 class="t-h-prod" style="color:var(--accent-on)">Roadmap Wajib: Domain Resmi BPS</h3>
-              <p class="t-body-sm" style="margin-top:.4vh;color:rgba(var(--accent-on-rgb),.88)">BPS Mempawah harus mengajukan domain resmi sendiri, lalu tinggal memperbarui ingress <code style="font-family:var(--mono)">cloudflared</code> &amp; FQDN Coolify tanpa ubah kode aplikasi.</p>
+              <h3 class="t-h-prod" style="color:var(--accent-on)">Hardening Fisik (LAN eno1) &amp; Secret Vault</h3>
+              <p class="t-body-sm" style="margin-top:.4vh;color:rgba(var(--accent-on-rgb),.88)">Tarik kabel RJ45 ke port <code style="font-family:var(--mono)">eno1</code> ThinkStation dan simpan seluruh kredensial akun <code style="font-family:var(--mono)">ipds6104</code> terpusat di Infisical Vault.</p>
             </div>
           </div>
         </div>
@@ -2514,18 +2605,18 @@ flowchart LR
   </div>
 </section>
 
-<!-- SLIDE 12 · S19 Four Cards · DARK -->
+<!-- SLIDE 14 · S19 Four Cards · DARK -->
 <section class="slide dark" data-layout="S19" data-animate="four-cards" data-slide-id="team-playbook">
   <div class="canvas-card">
     <div class="chrome-min">
-      <div class="l">11 · OPERASIONAL TIM IT (2 ANGGOTA)</div>
-      <div class="r">12 / 13</div>
+      <div class="l">13 · OPERASIONAL TIM IT (2 ANGGOTA + LEAD)</div>
+      <div class="r">14 / 15</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:4vh;padding-bottom:3.5vh">
       <div data-anim="line" style="display:flex;flex-direction:column;gap:2vh">
         <div style="width:80px;height:2px;background:var(--accent-bright)"></div>
         <div>
-          <div class="t-meta" style="margin-bottom:1vh">STANDARD OPERATING PLAYBOOK &amp; UPGRADE PRIORITIES</div>
+          <div class="t-meta" style="margin-bottom:1vh">STANDARD OPERATING PLAYBOOK</div>
           <h2 style="font-family:var(--sans);font-weight:200;font-size:min(4.8vw,8.6vh);line-height:1;letter-spacing:-.03em;color:var(--paper)">
             4 Pilar Kerja Tim IT BPS 6104
           </h2>
@@ -2535,45 +2626,45 @@ flowchart LR
         <div style="border-top:1px solid rgba(var(--paper-rgb),.25);padding-top:2vh;display:flex;flex-direction:column;gap:1.4vh">
           <div class="t-meta" style="color:var(--accent-ink-inverse)">— 01 / GIT FLOW</div>
           <h3 style="font-family:var(--sans);font-weight:300;font-size:min(2vw,3.5vh);line-height:1.15;color:var(--paper)">Disiplin Branch main</h3>
-          <p class="t-body-sm">Setiap push ke <code style="font-family:var(--mono)">main</code> langsung memicu 3x GitHub Apps ke produksi. Wajib tes lokal/PR sebelum merge.</p>
+          <p class="t-body-sm">Push ke <code style="font-family:var(--mono)">main</code> memicu 3x GitHub Apps langsung ke produksi. Wajib tes lokal/PR sebelum merge.</p>
         </div>
         <div style="border-top:1px solid rgba(var(--paper-rgb),.25);padding-top:2vh;display:flex;flex-direction:column;gap:1.4vh">
-          <div class="t-meta" style="color:var(--accent-ink-inverse)">— 02 / OBSERVABILITY</div>
-          <h3 style="font-family:var(--sans);font-weight:300;font-size:min(2vw,3.5vh);line-height:1.15;color:var(--paper)">Coolify, Obv &amp; Infisical</h3>
-          <p class="t-body-sm">Pantau logs di <code style="font-family:var(--mono)">coolify</code> &amp; <code style="font-family:var(--mono)">obv.dvlpid.my.id</code>; kelola kredensial terpusat di <code style="font-family:var(--mono)">secrets.dvlpid.my.id</code>.</p>
+          <div class="t-meta" style="color:var(--accent-ink-inverse)">— 02 / INFISICAL &amp; OBV</div>
+          <h3 style="font-family:var(--sans);font-weight:300;font-size:min(2vw,3.5vh);line-height:1.15;color:var(--paper)">Vault &amp; Observability</h3>
+          <p class="t-body-sm">Semua secret wajib di <code style="font-family:var(--mono)">secrets</code> (Infisical), pantau logs di Coolify &amp; <code style="font-family:var(--mono)">obv.dvlpid.my.id</code>.</p>
         </div>
         <div style="border-top:1px solid rgba(var(--paper-rgb),.25);padding-top:2vh;display:flex;flex-direction:column;gap:1.4vh">
-          <div class="t-meta" style="color:var(--accent-ink-inverse)">— 03 / NETWORK &amp; HW</div>
-          <h3 style="font-family:var(--sans);font-weight:300;font-size:min(2vw,3.5vh);line-height:1.15;color:var(--paper)">Isolasi 2 ISP + Kabel LAN</h3>
-          <p class="t-body-sm">Jaga ThinkStation di Dukodu (1 AP) &amp; pegawai di IndiHome (2 AP). Target fisik: tarik kabel RJ45 ke port <code style="font-family:var(--mono)">eno1</code>.</p>
+          <div class="t-meta" style="color:var(--accent-ink-inverse)">— 03 / MESH &amp; DUAL-ISP</div>
+          <h3 style="font-family:var(--sans);font-weight:300;font-size:min(2vw,3.5vh);line-height:1.15;color:var(--paper)">Tailscale + AGY Mesh</h3>
+          <p class="t-body-sm">Manfaatkan <code style="font-family:var(--mono)">agy-ops</code> / AGY Mesh (:8484) lintas PC, patuhi Zero 3rd-Party VPN Rule, dan jaga isolasi 2 ISP.</p>
         </div>
         <div style="border-top:1px solid rgba(var(--paper-rgb),.25);padding-top:2vh;display:flex;flex-direction:column;gap:1.4vh">
-          <div class="t-meta" style="color:var(--accent-ink-inverse)">— 04 / ROADMAP</div>
-          <h3 style="font-family:var(--sans);font-weight:300;font-size:min(2vw,3.5vh);line-height:1.15;color:var(--paper)">Domain Resmi BPS</h3>
-          <p class="t-body-sm">Siapkan pengadaan domain resmi BPS Mempawah agar 25+ subdomain <code style="font-family:var(--mono)">*.dvlpid.my.id</code> segera bermigrasi.</p>
+          <div class="t-meta" style="color:var(--accent-ink-inverse)">— 04 / GOVERNANCE</div>
+          <h3 style="font-family:var(--sans);font-weight:300;font-size:min(2vw,3.5vh);line-height:1.15;color:var(--paper)">Domain &amp; ipds6104@</h3>
+          <p class="t-body-sm">Eksekusi migrasi Tailscale ke <code style="font-family:var(--mono)">ipds6104@gmail.com</code>, pengadaan domain resmi BPS, dan kabel LAN <code style="font-family:var(--mono)">eno1</code>.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 13 · SWISS-CLOSING-ASCII · SPLIT -->
+<!-- SLIDE 15 · SWISS-CLOSING-ASCII · SPLIT -->
 <section class="slide split" data-layout="SWISS-CLOSING-ASCII" data-animate="split-statement" data-slide-id="closing">
   <div class="canvas-card">
     <div class="split-half">
       <div class="half b-accent" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between;position:relative;overflow:hidden">
         <canvas class="ascii-bg" aria-hidden="true"></canvas>
         <div class="chrome-min" style="margin-bottom:0;position:relative;z-index:1">
-          <div class="l">13 / 13</div>
+          <div class="l">15 / 15</div>
           <div class="r">CLOSING</div>
         </div>
         <div data-anim="manifesto" style="display:flex;flex-direction:column;gap:2vh;position:relative;z-index:1">
           <div class="t-meta" style="color:rgba(var(--accent-on-rgb),.78);letter-spacing:.22em;margin-bottom:1.2vh">ARCHITECTURAL SUMMARY</div>
-          <h2 style="font-family:var(--sans);font-size:min(5.6vw,10vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:var(--accent-on)">
-            Satu Server.<br/>78 Container.<br/>Nol <span style="font-style:italic;font-weight:300">Drama</span> Deploy.
+          <h2 style="font-family:var(--sans);font-size:min(5.2vw,9.4vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:var(--accent-on)">
+            Satu Server.<br/>78 Container.<br/>11 Node <span style="font-style:italic;font-weight:300">Mesh</span>.
           </h2>
           <div style="font-family:var(--sans);font-size:max(min(15px,2vh),min(1.05vw,1.85vh));line-height:1.6;color:rgba(var(--accent-on-rgb),.86);font-weight:400;max-width:38ch;margin-top:1.2vh">
-            Infrastruktur yang terisolasi di jaringan, diproteksi Dual HA Tunnel, dan terotomasi penuh lewat GitOps memungkinkan tim kecil mengelola produksi setara enterprise.
+            Isolasi Dual-ISP, otomasi Coolify, brankas Infisical, dan kolaborasi Tailscale + AGY Mesh memungkinkan tim 3 orang mengelola produksi setara skala enterprise.
           </div>
         </div>
         <div data-anim="signature" style="display:flex;justify-content:space-between;align-items:end;border-top:1px solid rgba(var(--accent-on-rgb),.22);padding-top:2vh;position:relative;z-index:1">
@@ -2591,22 +2682,22 @@ flowchart LR
           <div style="display:grid;grid-template-columns:auto 1fr;gap:min(2vw,3.556vh) 2vw;align-items:start;padding:2.4vh 0;border-top:1px solid var(--border-subtle)">
             <div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.4vh);line-height:.9;color:var(--text-primary)">01</div>
             <div>
-              <h3 style="font-family:var(--sans);font-weight:400;font-size:max(min(18px,2.5vh),min(1.6vw,2.8vh));line-height:1.2;letter-spacing:-.015em;color:var(--text-primary);margin-bottom:.8vh">Jaga Segmentasi 2 ISP &amp; Upgrade LAN</h3>
+              <h3 style="font-family:var(--sans);font-weight:400;font-size:max(min(18px,2.5vh),min(1.6vw,2.8vh));line-height:1.2;letter-spacing:-.015em;color:var(--text-primary);margin-bottom:.8vh">Jaga Dual-ISP &amp; Upgrade Kabel LAN</h3>
               <p style="font-family:var(--sans);font-size:max(min(16px,2.222vh),.94vw);line-height:1.55;color:var(--text-secondary);font-weight:400">Dukodu (1 AP) khusus ThinkStation P320 (target kabel <code style="font-family:var(--mono)">eno1</code>); IndiHome (2 AP) khusus pegawai.</p>
             </div>
           </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:min(2vw,3.556vh) 2vw;align-items:start;padding:2.4vh 0;border-top:1px solid var(--border-subtle)">
             <div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.4vh);line-height:.9;color:var(--text-primary)">02</div>
             <div>
-              <h3 style="font-family:var(--sans);font-weight:400;font-size:max(min(18px,2.5vh),min(1.6vw,2.8vh));line-height:1.2;letter-spacing:-.015em;color:var(--text-primary);margin-bottom:.8vh">Otomasi Penuh di Coolify v4.7.6</h3>
-              <p style="font-family:var(--sans);font-size:max(min(16px,2.222vh),.94vw);line-height:1.55;color:var(--text-secondary);font-weight:400">Push ke <code style="font-family:var(--mono)">main</code> → 3x GitHub Apps Webhook → Docker build/GHCR pull → Traefik v3.6 + Cloudflared HA.</p>
+              <h3 style="font-family:var(--sans);font-weight:400;font-size:max(min(18px,2.5vh),min(1.6vw,2.8vh));line-height:1.2;letter-spacing:-.015em;color:var(--text-primary);margin-bottom:.8vh">Coolify CI/CD + Infisical + AGY Mesh</h3>
+              <p style="font-family:var(--sans);font-size:max(min(16px,2.222vh),.94vw);line-height:1.55;color:var(--text-secondary);font-weight:400">Auto-redeploy lewat GitHub Apps, nol secret hardcoded berkat Infisical, dan orkestrasi 11 PC lewat AGY Mesh.</p>
             </div>
           </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:min(2vw,3.556vh) 2vw;align-items:start;padding:2.4vh 0;border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent)">
             <div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.4vh);line-height:.9;color:var(--accent-ink)">03</div>
             <div>
-              <h3 style="font-family:var(--sans);font-weight:400;font-size:max(min(18px,2.5vh),min(1.6vw,2.8vh));line-height:1.2;letter-spacing:-.015em;color:var(--accent-ink);margin-bottom:.8vh">Target Prioritas: Domain Resmi BPS</h3>
-              <p style="font-family:var(--sans);font-size:max(min(16px,2.222vh),.94vw);line-height:1.55;color:var(--text-secondary);font-weight:400">Segera siapkan pengadaan domain resmi BPS Mempawah untuk menggantikan <code style="font-family:var(--mono)">*.dvlpid.my.id</code>.</p>
+              <h3 style="font-family:var(--sans);font-weight:400;font-size:max(min(18px,2.5vh),min(1.6vw,2.8vh));line-height:1.2;letter-spacing:-.015em;color:var(--accent-ink);margin-bottom:.8vh">Migrasi Aset: Domain BPS &amp; ipds6104@</h3>
+              <p style="font-family:var(--sans);font-size:max(min(16px,2.222vh),.94vw);line-height:1.55;color:var(--text-secondary);font-weight:400">Pindahkan Tailscale dari <code style="font-family:var(--mono)">ihza2karunia@gmail.com</code> ke <code style="font-family:var(--mono)">ipds6104@gmail.com</code> &amp; adakan domain resmi BPS.</p>
             </div>
           </div>
         </div>
@@ -2628,13 +2719,13 @@ const SPEAKER_NOTES = [
     title: 'Arsitektur Infrastruktur BPS Mempawah',
     section: 'Pembukaan',
     minutes: 1.0,
-    purpose: 'Menyamakan pemahaman menyeluruh infrastruktur hardware & software untuk 2 anggota tim IT.',
+    purpose: 'Menyamakan pemahaman menyeluruh infrastruktur hardware, jaringan, mesh, vault, dan software untuk 2 anggota tim IT.',
     talk: [
-      'Hari ini kita bedah seluruh infrastruktur riil BPS Mempawah, lengkap dengan 3 diagram Mermaid: End-to-End, khusus Hardware, dan khusus Software.',
-      'Node produksi kita adalah Lenovo ThinkStation P320 dengan 78 container Docker aktif.',
-      'Di tiap slide diagram Mermaid ada tombol + / - dan drag untuk zoom ke detail kecil saat sesi tanya jawab.'
+      'Hari ini kita bedah arsitektur lengkap BPS Mempawah: ThinkStation P320, Dual-ISP, 11 node Tailscale + AGY Mesh, Infisical Vault, dan 78 container Coolify.',
+      'Ada 3 slide diagram Mermaid interaktif: End-to-End, khusus Hardware/Peer Mesh, dan khusus Software/Vault/CI-CD.',
+      'Gunakan tombol + / - dan drag pada tiap diagram Mermaid saat kita perlu zoom ke detail tertentu.'
     ],
-    transition: 'Kita mulai dari tiga lapisan fondasi yang menopang sistem kita.',
+    transition: 'Kita mulai dari tiga lapisan fondasi utama.',
     cue: 'Pastikan kedua anggota tim IT melihat layar dengan jelas'
   },
   {
@@ -2642,156 +2733,182 @@ const SPEAKER_NOTES = [
     title: 'Tiga Lapisan Utama Infrastruktur',
     section: 'Fondasi',
     minutes: 1.5,
-    purpose: 'Memecah arsitektur ke dalam 3 lapisan utama sebelum masuk ke diagram detail.',
+    purpose: 'Memecah arsitektur ke dalam 3 lapisan besar sebelum melihat peta Mermaid.',
     talk: [
-      'Layer 1 fisik: ThinkStation P320 (Xeon 4C, Quadro P600, 15 GiB RAM, 1 TB HDD) dan PC/laptop pegawai.',
-      'Layer 2 konektivitas: 2 ISP (Dukodu 1 AP, IndiHome 2 AP) ditambah Dual HA cloudflared QUIC Tunnel.',
-      'Layer 3 platform: Docker v29.5.0, Coolify v4.7.6, Traefik v3.6, dan 3x GitHub Apps Webhook.'
+      'Layer 1 fisik: ThinkStation P320, puluhan PC pegawai, serta 11 perangkat yang tergabung dalam Tailscale Mesh.',
+      'Layer 2 konektivitas: Dual-ISP (Dukodu 1 AP, IndiHome 2 AP), Dual HA cloudflared QUIC, serta overlay Tailscale + AGY Mesh :8484.',
+      'Layer 3 platform: Docker v29.5.0, Coolify v4.7.6, Infisical Secret Vault, dan 3x GitHub Apps Webhook.'
     ],
-    transition: 'Sekarang kita lihat gambaran utuh end-to-end dalam Mermaid #1.'
+    transition: 'Mari kita lihat bagaimana ketiga lapisan ini menyatu dalam Mermaid #1 End-to-End.'
   },
   {
     id: 'architecture-overview',
     title: 'Mermaid #1 — Arsitektur End-to-End',
     section: 'Overview',
     minutes: 2.5,
-    purpose: 'Menunjukkan bagaimana jaringan pegawai, Cloudflare Edge, ThinkStation, dan CI/CD saling terhubung.',
+    purpose: 'Menunjukkan pemisahan Public Data Plane (Cloudflared/Traefik) dan Private Mesh Plane (Tailscale/AGY Mesh).',
     talk: [
-      'Ada 4 zona utama: Operasional (IndiHome), Cloud Edge (Cloudflare + Dual HA cloudflared), Produksi (Dukodu + ThinkStation), dan CI/CD + Remote Admin.',
-      'Karena memakai outbound QUIC tunnel, kita tidak perlu IP publik statis atau port forwarding di router Dukodu.',
-      'Admin remote mengakses server via Tailscale Mesh (100.101.49.42) dan agy-mesh :8484.'
+      'Akses publik pegawai berjalan dari IndiHome ke Cloudflare Edge, lalu masuk lewat Dual HA cloudflared QUIC ke Traefik & Direct Ports.',
+      'Jalur admin & multi-PC berjalan di atas Tailscale (11 node) + AGY Mesh :8484 untuk remote ops dan shared context.',
+      'Infisical Vault (:8095) menyuntikkan secret ke aplikasi dan agent tanpa hardcode.'
     ],
-    transition: 'Mari kita masuk ke blok Hardware & Jaringan Fisik, dimulai dari telemetri ThinkStation P320.'
+    transition: 'Sekarang kita masuk ke blok Hardware & Jaringan Fisik, mulai dari telemetri ThinkStation P320.'
   },
   {
     id: 'thinkstation-specs',
     title: 'Telemetri Hardware ThinkStation P320',
     section: 'Hardware & Jaringan',
-    minutes: 2.0,
+    minutes: 1.5,
     purpose: 'Menunjukkan kapasitas fisik aktual dan ruang ekspansi ThinkStation P320.',
     talk: [
-      'CPU Intel Xeon E3-1220 v6 4 core, GPU NVIDIA Quadro P600, RAM 15 GiB (terpakai 6.7 GiB, masih 58% free) + 11 GiB swap.',
-      'Hard disk WDC 1 TB terbagi ke 442.5 GB ext4 untuk Ubuntu/Docker (baru terpakai 48%) dan masih ada 486 GB partisi NTFS legacy.',
-      'Total workload terverifikasi di Docker v29.5.0 saat ini adalah 78 container aktif di atas 36 bridge network.'
+      'ThinkStation P320 dibekali Xeon E3-1220 v6 4 core, GPU NVIDIA Quadro P600, RAM 15 GiB (58% tersedia) + 11 GiB swap.',
+      'Storage 1 TB WD terbagi ke 442.5 GB ext4 untuk Ubuntu/Docker (baru 48% terpakai) plus 486 GB partisi NTFS legacy.',
+      'Saat ini node menjalankan 78 container aktif di atas 36 Docker bridge network.'
     ],
-    transition: 'Bagaimana server dengan 78 container ini diisolasi secara jaringan? Kita lihat Dual-ISP.'
+    transition: 'Bagaimana server ini diisolasi secara fisik dari trafik pegawai? Kita lihat Dual-ISP.'
   },
   {
     id: 'network-dual-isp',
     title: 'Pemisahan 2 ISP & 3 Access Point',
     section: 'Hardware & Jaringan',
-    minutes: 2.0,
-    purpose: 'Menjelaskan isolasi trafik IndiHome (pegawai) vs Dukodu (server) serta temuan NIC Wi-Fi vs LAN.',
+    minutes: 1.5,
+    purpose: 'Menjelaskan rasionalitas 2 ISP & 3 AP serta rekomendasi upgrade kabel LAN eno1.',
     talk: [
-      'IndiHome dengan 2 AP khusus menanggung trafik harian puluhan PC/laptop pegawai.',
-      'Dukodu dengan 1 AP 5GHz (OPTI-004F88-5G) khusus ThinkStation agar tidak berebut bandwidth dengan ruang kerja.',
-      'Temuan penting audit: ThinkStation saat ini tersambung lewat USB Wi-Fi 6 (192.168.1.54), sementara port LAN onboard Intel I219-LM (eno1) masih DOWN — ini kandidat upgrade kabel RJ45.'
+      'IndiHome (2 AP) menanggung trafik harian puluhan PC/laptop pegawai termasuk PC Windows yang ikut Tailscale.',
+      'Dukodu (1 AP 5GHz OPTI-004F88-5G) dikhususkan untuk ThinkStation P320 agar bandwidth server tetap stabil.',
+      'Temuan audit fisik: ThinkStation masih pakai USB Wi-Fi 6 (192.168.1.54), sedangkan port LAN Intel I219-LM (eno1) DOWN — target upgrade tarik kabel RJ45.'
     ],
-    transition: 'Sekarang kita bedah seluruh peta fisik dari ISP hingga partisi disk di Mermaid #2 khusus Hardware.'
+    transition: 'Mari lihat seluruh peta fisik termasuk 11 node Tailscale yang terhubung pada Mermaid #2.'
   },
   {
     id: 'mermaid-hardware',
-    title: 'Mermaid #2 — Diagram Lengkap Hardware & Jaringan Fisik',
+    title: 'Mermaid #2 — Diagram Lengkap Hardware, Jaringan & 11 Node Tailscale',
     section: 'Hardware & Jaringan',
     minutes: 3.0,
-    purpose: 'Memetakan 100% komponen fisik: 2 ISP, 3 AP, klien, NIC aktif/standby, bus CPU/RAM/GPU, dan partisi 1 TB HDD.',
+    purpose: 'Memetakan 100% aset fisik: 2 ISP, 3 AP, 11 perangkat Tailscale, NIC aktif/standby, bus internal, dan partisi 1 TB HDD.',
     talk: [
-      'Diagram ini memuat seluruh topologi fisik dari kiri ke kanan: Uplink ISP → 3 AP & Klien → Interface NIC ThinkStation → Bus Internal → Storage 1 TB WD.',
-      'Perhatikan garis putus-putus ke Intel I219-LM (eno1) sebagai roadmap menarik kabel LAN langsung dari AP/router Dukodu.',
-      'Perhatikan juga partisi sda3 & sda4 NTFS (486 GB total) yang bisa direklamasi jika partisi Linux ext4 (442.5 GB) suatu saat penuh.'
+      'Kolom 2 menampilkan seluruh 11 perangkat di Tailscale: 5 PC Windows BPS (bps 20-Core GPU, bps6104-2, bps6104-7, bps6104-8, desktop-ltkna8u), 2 laptop Linux (victus-1, victus), dan 3 perangkat mobile (localhost-0 Termux, poco-f7, xiaomi-pad-6).',
+      'Kolom 3–5 memetakan ThinkStation P320 dari USB Wi-Fi 6 & port eno1, tailscale0 (100.101.49.42), hingga CPU/RAM/GPU dan partisi 1 TB WD.',
+      'Tekankan catatan merah/biru di kolom 1: akun Tailscale masih ihza2karunia@gmail.com dan harus dipindah ke ipds6104@gmail.com.'
     ],
-    transition: 'Selesai di lapisan fisik, sekarang kita naik ke lapisan Software & 78 container di Coolify.',
-    cue: 'Gunakan tombol + untuk zoom ke kolom 3, 4, dan 5 bila diperlukan'
+    transition: 'Mari kita bahas lebih dalam bagaimana Tailscale dan AGY Mesh menghubungkan semua PC ini.',
+    cue: 'Zoom ke Kolom 2 & 3 untuk menunjukkan daftar PC BPS yang terhubung'
+  },
+  {
+    id: 'tailscale-agymesh',
+    title: 'Tailscale Overlay, PC Terhubung & Universal AGY Mesh',
+    section: 'Mesh & Kolaborasi Multi-PC',
+    minutes: 2.5,
+    purpose: 'Menjelaskan peran strategis Tailscale dan AGY Mesh (:8484) bagi kolaborasi lintas komputer tim IT.',
+    talk: [
+      'Tailscale menyatukan server di ISP Dukodu dengan PC kantor di ISP IndiHome dan perangkat mobile ke dalam 1 jaringan private terenkripsi.',
+      'Di atas Tailscale berjalan Universal AGY Mesh (daemon Bun port 8484): kita bisa eksekusi command remote (<100ms via agy-ops), berbagi konteks kerja lintas PC (mesh_context.json), mendelegasikan tugas berat ke PC bps 20-Core (ask_peer), hingga inspeksi layar peer.',
+      'Ingatkan 2 aturan keras: jangan pakai VPN pihak ketiga saat akses mesh, dan kita harus segera memindahkan akun Tailscale ke ipds6104@gmail.com.'
+    ],
+    transition: 'Sekarang kita naik ke lapisan Software dan melihat 12 kelompok layanan aktif di Coolify.'
   },
   {
     id: 'coolify-ecosystem',
     title: '12 Kelompok Layanan Aktif di Coolify',
     section: 'Software & CI/CD',
     minutes: 2.0,
-    purpose: 'Merangkum seluruh aplikasi bisnis BPS, AI, automation, dan platform core sebelum masuk ke diagram software.',
+    purpose: 'Merangkum 78 container produksi (23 Apps, 5 Services, 7 Standalone DBs) di ThinkStation P320.',
     talk: [
-      'Di Coolify v4.7.6 ada 23 aplikasi, 5 compose services, dan 7 standalone databases dengan total 78 container berjalan.',
-      'Kelompok aplikasi BPS: Cerdas (6 container), GardaData, SIPEDAS/DokterV, Katalis (5 container), AINA + 2 WA Bot, Lumis AI, FlashLearn, dan MediaVault.',
-      'Kelompok platform pendukung: rIDM Auth SSO, Infisical Vault, OpenObserve, n8n, Windmill, Paca, Portainer, dan RustDesk.'
+      'Aplikasi inti BPS meliputi Cerdas (6 container), GardaData, SIPEDAS/DokterV, Katalis (5 container), AINA + 2 WA Bot, Lumis AI, FlashLearn, dan MediaVault.',
+      'Platform core meliputi rIDM Auth SSO (:8096), Infisical Secret Vault (:8095), OpenObserve (obv), n8n, Windmill, Paca, Portainer, dan RustDesk.',
+      'Semua terorkestrasi oleh Coolify v4.7.6 dan Traefik v3.6 di atas 36 Docker bridge network.'
     ],
-    transition: 'Bagaimana proses deploy semua aplikasi ini berjalan otomatis? Kita lihat loop CI/CD.'
+    transition: 'Bagaimana update kode langsung tayang tanpa SSH manual? Kita lihat siklus CI/CD.'
   },
   {
     id: 'cicd-pipeline',
     title: 'Siklus Auto-Redeploy CI/CD',
     section: 'Software & CI/CD',
-    minutes: 2.0,
-    purpose: 'Menjelaskan alur GitOps 4 langkah menggunakan 3x GitHub Apps Webhook di Coolify.',
+    minutes: 1.5,
+    purpose: 'Menjelaskan alur GitOps 4 langkah dari git push main sampai live di Traefik.',
     talk: [
-      'Setiap push ke branch main memicu salah satu dari 3 GitHub Apps yang terhubung ke Coolify.',
-      'Webhook masuk aman melewati Cloudflare Tunnel ke coolify.dvlpid.my.id tanpa perlu membuka port router.',
-      'Coolify membangun Docker image atau pull dari GHCR, mengecek healthcheck, lalu Traefik v3.6 memindahkan trafik otomatis.'
+      'Push ke branch main di GitHub langsung memicu salah satu dari 3 GitHub Apps Webhook ke Coolify.',
+      'Coolify membangun Docker image (atau pull dari GHCR), menyuntikkan secret dari Infisical/env, lalu cek healthcheck.',
+      'Traefik v3.6 mengganti routing ke container baru secara otomatis.'
     ],
-    transition: 'Sekarang kita lihat keseluruhan arsitektur software secara lengkap tanpa ada yang terlewat di Mermaid #3.'
+    transition: 'Sekarang kita bedah seluruh lapisan software tanpa ada yang terlewat di Mermaid #3.'
   },
   {
     id: 'mermaid-software',
-    title: 'Mermaid #3 — Diagram Lengkap Software, Ingress, 78 Container & CI/CD',
+    title: 'Mermaid #3 — Diagram Lengkap Software, Mesh, Vault & CI/CD',
     section: 'Software & CI/CD',
     minutes: 3.5,
-    purpose: 'Memetakan 100% komponen software: GitOps, Dual-path Ingress Cloudflared/Traefik, Control Plane, 78 container, hingga Data Layer.',
+    purpose: 'Memetakan 100% komponen software: GitOps, Tailscale Peers, Dual-Path Ingress, Infisical Vault, AGY Mesh, 78 containers, dan Data Layer.',
     talk: [
-      'Perhatikan kolom 2 (Ingress): cloudflared HA membagi rute ke 8 layanan direct host-port (coolify:8000, auth:8096, secrets:8095, paca:8085, aina:8090, aina-wa:8082, router:20128, ai:8045) serta wildcard *.dvlpid.my.id ke Traefik v3.6.',
-      'Kolom 3 memuat host daemon Ubuntu (tailscaled, agy-mesh, microsocks, warp-svc) plus Coolify v4.7.6, rIDM SSO, Infisical, OpenObserve, Portainer, dan RustDesk.',
-      'Kolom 4 dan 5 memetakan seluruh 78 container workload hingga database layer (PostgreSQL 15/16/18, MariaDB 11, MySQL, Redis, Valkey, Meilisearch, MinIO).'
+      'Kolom 1 & 2: GitOps (3x GitHub Apps) dan Dual-Path Ingress Cloudflared HA (8 Direct Host-Port + Wildcard Traefik v3.6).',
+      'Kolom 3 menyorot 4 mesin utama: Host OS + AGY Mesh (:8484), Infisical Secret Vault (:8095) yang menyuntikkan kredensial ke seluruh layer, Coolify v4.7.6, serta rIDM SSO + OpenObserve + Portainer + RustDesk.',
+      'Kolom 4 & 5 memetakan seluruh 78 container aplikasi hingga database layer (PostgreSQL 15/16/18, MariaDB 11, MySQL, Redis, Valkey, Meilisearch, MinIO).'
     ],
-    transition: 'Untuk menyederhanakan ingatan tim, kita rangkum seluruh ekosistem ini dalam 6 komponen inti.',
-    cue: 'Gunakan tombol + dan geser (drag) untuk memperbesar kolom Ingress dan Workload Containers'
+    transition: 'Kenapa Infisical Vault mendapat sorotan biru khusus di diagram ini? Mari kita bedah di slide berikutnya.',
+    cue: 'Gunakan tombol + dan drag untuk memperbesar Kolom 3 (Infisical & AGY Mesh)'
   },
   {
-    id: 'hardware-compute',
-    title: 'Ringkasan 6 Elemen Kritis Infrastruktur',
-    section: 'Tata Kelola & Operasional',
-    minutes: 1.5,
-    purpose: 'Memperkuat pemetaan tanggung jawab 6 komponen kunci bagi tim IT.',
-    talk: [
-      'Enam komponen ini adalah peta mental cepat saat terjadi insiden: mulai cek dari ISP/AP, lalu ThinkStation/Ubuntu, Docker/36 bridges, hingga Coolify/Traefik.',
-      'Dengan pemisahan peran yang jelas, root-cause analysis bisa dilakukan dalam hitungan menit.',
-      'Lapisan kontrol utama tim IT sehari-hari ada di kotak biru: Coolify v4.7.6 + Traefik v3.6.'
-    ],
-    transition: 'Sekarang kita bahas satu isu tata kelola paling penting untuk jangka panjang: kepemilikan domain.'
-  },
-  {
-    id: 'domain-governance',
-    title: 'Tata Kelola Domain & Transisi Aset',
-    section: 'Tata Kelola & Operasional',
+    id: 'infisical-importance',
+    title: 'Mengapa Infisical Secret Vault Wajib di Tim IT Kita?',
+    section: 'Keamanan & Secrets',
     minutes: 2.0,
-    purpose: 'Menekankan bahwa *.dvlpid.my.id adalah domain pribadi Lead dan BPS Mempawah wajib mengadakan domain resmi.',
+    purpose: 'Menanamkan disiplin Zero Hardcoded Secrets pada kedua anggota tim IT.',
     talk: [
-      'Saat ini lebih dari 25 subdomain aktif memakai *.dvlpid.my.id milik pribadi saya untuk kecepatan deployment.',
-      'Sebagai instansi pemerintah, ketergantungan pada domain personal berbahaya bagi keberlanjutan aset jangka panjang.',
-      'Karena arsitektur sudah berbasis Cloudflare Tunnel dan Traefik di Coolify, migrasi ke domain resmi BPS nanti tidak perlu mengubah kode aplikasi.'
+      'Pertama, Zero Hardcoded Secrets: repo Git kita banyak yang publik — sekali token atau password DB ikut ter-commit, seluruh sistem terekspos.',
+      'Kedua, Single Source of Truth: Infisical (secrets.dvlpid.my.id) menyuntikkan secret langsung ke memori proses lewat Universal Auth (infisical run / agy-infisical), tanpa kirim-kirim file .env di WhatsApp.',
+      'Ketiga, rotasi instan & audit trail: saat ada rotasi password atau pergantian tim IT, cukup ubah sekali di brankas Infisical.'
     ],
-    transition: 'Terakhir, bagaimana pola kerja harian kita bertiga untuk menjaga seluruh infrastruktur ini?'
+    transition: 'Setelah keamanan secret, ada dua isu tata kelola kepemilikan aset yang wajib kita selesaikan.'
+  },
+  {
+    id: 'governance-migration',
+    title: 'Dua Migrasi Tata Kelola Wajib: Domain & Tailscale',
+    section: 'Tata Kelola Aset',
+    minutes: 2.5,
+    purpose: 'Menjelaskan secara transparan bahwa *.dvlpid.my.id dan akun Tailscale ihza2karunia@gmail.com masih aset personal.',
+    talk: [
+      'Di sebelah kiri: *.dvlpid.my.id adalah domain pribadi saya yang menampung 25+ subdomain aktif. Ke depan BPS Mempawah wajib punya domain resmi sendiri.',
+      'Di sebelah kanan: akun Tailscale yang mengelola ThinkStation dan 5 PC kantor (bps, bps6104-2/7/8) masih ihza2karunia@gmail.com — ini belum ideal secara tata kelola instansi.',
+      'Tailnet wajib dipindahkan ke akun resmi satker ipds6104@gmail.com agar kendali penuh ada di instansi.'
+    ],
+    transition: 'Bagaimana urutan langkah eksekusi migrasi ini agar nol downtime?'
+  },
+  {
+    id: 'governance-roadmap',
+    title: '3 Fase Transisi Kedaulatan Aset Digital',
+    section: 'Tata Kelola Aset',
+    minutes: 2.0,
+    purpose: 'Memberikan rencana kerja konkret yang bisa segera dieksekusi bersama 2 anggota tim IT.',
+    talk: [
+      'Fase 1: Migrasi Tailscale ke ipds6104@gmail.com — re-auth server dan seluruh PC kantor, lalu perbarui daftar IP peer AGY Mesh.',
+      'Fase 2: Pengadaan domain resmi BPS Mempawah — pasang paralel di Cloudflare Tunnel & Coolify sebelum cutover penuh.',
+      'Fase 3: Hardening fisik (tarik kabel LAN ke eno1 ThinkStation) dan kunci seluruh kredensial akun ipds6104 di Infisical Vault.'
+    ],
+    transition: 'Sebagai panduan harian, mari kita sepakati 4 pilar kerja tim IT kita.'
   },
   {
     id: 'team-playbook',
     title: '4 Pilar Kerja Tim IT BPS 6104',
-    section: 'Tata Kelola & Operasional',
+    section: 'Operasional Tim IT',
     minutes: 1.5,
-    purpose: 'Menetapkan SOP praktis harian dan prioritas upgrade bagi 2 anggota tim IT.',
+    purpose: 'Menetapkan SOP harian bagi 2 anggota tim IT dan Lead.',
     talk: [
-      'Pilar 1: Disiplin branch main karena push langsung deploy produksi.',
-      'Pilar 2: Gunakan Coolify, OpenObserve (obv), dan Infisical (secrets) — jangan simpan credential di git.',
-      'Pilar 3 & 4: Jaga isolasi 2 ISP, rencanakan penarikan kabel LAN ke eno1, dan kawal pengadaan domain resmi BPS Mempawah.'
+      'Pilar 1: Disiplin branch main karena push langsung mengubah produksi.',
+      'Pilar 2: Semua kredensial lewat Infisical dan pantau kesehatan layanan di Coolify & OpenObserve.',
+      'Pilar 3 & 4: Gunakan AGY Mesh + Tailscale tanpa VPN pihak ketiga, jaga isolasi 2 ISP, dan eksekusi migrasi domain + ipds6104@gmail.com.'
     ],
-    transition: 'Kita tutup dengan 3 prinsip utama yang wajib dipegang tim IT.'
+    transition: 'Kita tutup sesi ini dengan 3 prinsip utama.'
   },
   {
     id: 'closing',
     title: 'Penutup & 3 Prinsip Utama',
     section: 'Penutup',
     minutes: 1.0,
-    purpose: 'Merangkum seluruh briefing menjadi 3 aksi konkret dan membuka sesi Q&A.',
+    purpose: 'Merangkum seluruh briefing dan membuka sesi Q&A / demo langsung.',
     talk: [
-      'Tiga prinsip inti: jaga isolasi Dual-ISP + upgrade kabel LAN, andalkan otomasi CI/CD Coolify, dan kejar domain resmi BPS.',
-      'Dengan 1 ThinkStation P320, tim IT 3 orang sudah mengoperasikan 78 container secara stabil.',
-      'Silakan ajukan pertanyaan atau bagian mana dari diagram Hardware/Software yang ingin kita zoom dan demo langsung.'
+      'Satu server ThinkStation P320, 78 container aktif, dan 11 node Tailscale Mesh — semua bisa dikelola rapi oleh tim 3 orang.',
+      'Tiga prioritas aksi kita bersama: jaga Dual-ISP + tarik LAN eno1, disiplin CI/CD + Infisical + AGY Mesh, serta migrasi ke domain resmi BPS dan Tailscale ipds6104@gmail.com.',
+      'Silakan ajukan pertanyaan atau bagian mana dari diagram yang ingin kita zoom dan demo langsung di Coolify/Infisical/AGY Mesh.'
     ],
     transition: 'Sesi selesai, lanjut ke diskusi dan tanya jawab.',
     interaction: 'Buka sesi Q&A bersama 2 anggota tim IT'
@@ -4714,8 +4831,8 @@ if(motion){
       theme: 'base',
       flowchart: {
         curve: 'linear',
-        nodeSpacing: 22,
-        rankSpacing: 34,
+        nodeSpacing: 20,
+        rankSpacing: 32,
         padding: 10,
         htmlLabels: true,
         useMaxWidth: true
@@ -4745,7 +4862,6 @@ if(motion){
     window.addEventListener('load', initMermaid);
   }
 
-  /* Interactive Swiss Zoom & Pan for every .mermaid-stage (does not hijack deck wheel/arrows) */
   document.querySelectorAll('.mermaid-stage').forEach(function(stage){
     var viewport = stage.querySelector('.mermaid-viewport');
     var canvas = stage.querySelector('.mermaid-canvas');
