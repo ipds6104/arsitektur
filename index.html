@@ -1670,18 +1670,33 @@
   .mermaid-stage{
     background:var(--paper);
     border:1px solid var(--grey-2);
-    padding:1.8vh 1.6vw;
+    padding:1.6vh 1.4vw;
     display:flex;align-items:center;justify-content:center;
     min-height:0;overflow:hidden;
   }
-  .slide.grey .mermaid-stage{background:var(--paper);border-color:var(--grey-2)}
   .mermaid-stage .mermaid{width:100%;display:flex;justify-content:center;align-items:center}
   .mermaid-stage svg{max-width:100%;max-height:46vh;height:auto!important;font-family:var(--sans)!important}
   .mermaid-stage svg rect{rx:0px!important;ry:0px!important}
   .mermaid-stage svg .cluster rect{fill:#f0f0ee!important;stroke:#0a0a0a!important;stroke-width:1px!important}
   .mermaid-stage svg .node rect,.mermaid-stage svg .node polygon{stroke-width:1.5px!important}
-  /* Fix sub-card border-radius:0 for strict Swiss */
   .sub-card{border-radius:0!important}
+  .matrix-grid-4x3{
+    display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);
+    gap:1.2vh 1.2vw;min-height:0;
+  }
+  .matrix-cell{
+    background:var(--grey-1);padding:1.4vh 1.2vw;
+    display:flex;flex-direction:column;justify-content:space-between;
+    border-top:2px solid var(--ink);min-height:0;
+  }
+  .matrix-cell.is-accent{background:var(--accent);color:var(--accent-on);border-top-color:var(--accent)}
+  .matrix-cell .m-ttl{font-family:var(--sans);font-weight:500;font-size:max(16px,1.15vw);line-height:1.15}
+  .matrix-cell .m-sub{font-family:var(--mono);font-size:max(14px,.78vw);letter-spacing:.04em;opacity:.78}
+  .spec-kpi-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2vw}
+  .spec-kpi-box{border-top:2px solid var(--ink);padding-top:1.4vh;display:flex;flex-direction:column;gap:.8vh}
+  .spec-bars-9{display:flex;align-items:flex-end;gap:.5vw;height:14vh}
+  .spec-bar{flex:1;background:var(--ink);transform-origin:bottom}
+  .spec-bar.accent{background:var(--accent)}
 </style>
 </head>
 <body class="canvas-mode">
@@ -1737,7 +1752,7 @@
     <canvas class="ascii-bg" aria-hidden="true"></canvas>
     <div class="chrome-min">
       <div class="l">BPS KABUPATEN MEMPAWAH · KODE 6104</div>
-      <div class="r">ARCH · 2026 · 01 / 09</div>
+      <div class="r">ARCH · 2026 · 01 / 11</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr auto;gap:2.6vh">
       <div data-anim="kicker" class="t-meta" style="color:rgba(var(--accent-on-rgb),.78);letter-spacing:.22em">SYSTEMS ARCHITECTURE BRIEFING · TIM IT IPDS</div>
@@ -1745,8 +1760,8 @@
         Arsitektur<br/>Infrastruktur <span style="font-style:italic;font-weight:300">BPS 6104</span>
       </h1>
       <div data-anim="bottom" style="display:grid;grid-template-rows:auto auto;gap:1.6vh;border-top:1px solid rgba(var(--accent-on-rgb),.22);padding-top:2vh">
-        <div data-anim="lead" class="lead" style="max-width:60ch;color:rgba(var(--accent-on-rgb),.88);font-weight:300">
-          Pemetaan menyeluruh hardware server ThinkStation, segmentasi jaringan Dual-ISP (Dukodu &amp; IndiHome), orchestrator Coolify, serta otomasi CI/CD GitHub Apps.
+        <div data-anim="lead" class="lead" style="max-width:64ch;color:rgba(var(--accent-on-rgb),.88);font-weight:300">
+          Pemetaan komprehensif ThinkStation P320 (67 container aktif), segmentasi jaringan Dual-ISP (Dukodu &amp; IndiHome), Coolify v4.7.6 + Traefik v3.6, serta otomasi CI/CD GitHub Apps.
         </div>
         <div style="display:flex;justify-content:space-between;align-items:end">
           <div class="t-meta" style="color:rgba(var(--accent-on-rgb),.65)">SYSTEMS ARCHITECT LEAD · BRIEFING TIM IT (2 ANGGOTA)</div>
@@ -1762,7 +1777,7 @@
   <div class="canvas-card">
     <div class="chrome-min">
       <div class="l">01 · FONDASI SISTEM</div>
-      <div class="r">02 / 09</div>
+      <div class="r">02 / 11</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:3vh;padding-bottom:3vh">
       <div data-anim="head" style="display:flex;flex-direction:column;gap:1.4vh">
@@ -1776,22 +1791,22 @@
           <div class="layer-nb">LAYER 01 · PHYSICAL</div>
           <i data-lucide="server"></i>
           <h3 class="layer-ttl">Hardware &amp; Compute</h3>
-          <p class="layer-desc">1 PC Server ThinkStation (Ubuntu Desktop) sebagai host produksi utama, berdampingan dengan puluhan PC/laptop operasional pegawai BPS Mempawah.</p>
-          <div class="layer-tag">THINKSTATION + WORKSTATION</div>
+          <p class="layer-desc">1 PC Server ThinkStation P320 (Xeon E3-1220 v6, 15 GiB RAM, Ubuntu 24.04.4 LTS) sebagai host produksi, terpisah dari PC/laptop pegawai.</p>
+          <div class="layer-tag">THINKSTATION P320 + WORKSTATION</div>
         </article>
         <article class="stack-block b-accent">
           <div class="layer-nb">LAYER 02 · CONNECTIVITY</div>
           <i data-lucide="network"></i>
           <h3 class="layer-ttl">Dual-ISP &amp; 3 Access Point</h3>
-          <p class="layer-desc">Pemisahan jalur trafik secara fisik: ISP Dukodu (1 AP) khusus untuk ThinkStation server, sedangkan ISP IndiHome (2 AP) melayani seluruh pegawai.</p>
+          <p class="layer-desc">Isolasi jalur trafik secara fisik: ISP Dukodu (1 AP) khusus ThinkStation P320, sedangkan ISP IndiHome (2 AP) melayani seluruh pegawai.</p>
           <div class="layer-tag">DUKODU (1 AP) · INDIHOME (2 AP)</div>
         </article>
         <article class="stack-block b-grey">
           <div class="layer-nb">LAYER 03 · PLATFORM &amp; OPS</div>
           <i data-lucide="git-branch"></i>
           <h3 class="layer-ttl">Docker, Coolify &amp; CI/CD</h3>
-          <p class="layer-desc">Containerisasi aplikasi via Docker yang dikelola Coolify (*.dvlpid.my.id), terhubung ke GitHub Apps Webhook untuk auto-redeploy saat push ke main.</p>
-          <div class="layer-tag">AUTO REDEPLOY ON PUSH</div>
+          <p class="layer-desc">Docker v29.5.0 + Coolify v4.7.6 + Traefik v3.6 mengelola 67 container aktif (*.dvlpid.my.id) dengan auto-redeploy GitHub Apps Webhook.</p>
+          <div class="layer-tag">67 CONTAINERS · AUTO REDEPLOY</div>
         </article>
       </div>
     </div>
@@ -1803,7 +1818,7 @@
   <div class="canvas-card">
     <div class="chrome-min tight">
       <div class="l">02 · TOPOLOGI END-TO-END</div>
-      <div class="r">03 / 09</div>
+      <div class="r">03 / 11</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr auto;gap:2vh;padding-bottom:3.5vh;min-height:0">
       <div data-anim="line" style="display:flex;flex-direction:column;gap:1vh">
@@ -1831,13 +1846,15 @@ flowchart LR
     direction TB
     ISP2["ISP Dukodu"]
     AP3["Access Point 3 (Server)"]
-    TS["PC Server ThinkStation&lt;br/&gt;Ubuntu Desktop"]
-    DK["Docker Engine"]
-    CL["Coolify PaaS&lt;br/&gt;*.dvlpid.my.id"]
+    TS["ThinkStation P320&lt;br/&gt;Ubuntu 24.04.4 LTS"]
+    DK["Docker v29.5.0&lt;br/&gt;67 Containers"]
+    TR["Traefik v3.6&lt;br/&gt;*.dvlpid.my.id"]
+    CL["Coolify v4.7.6&lt;br/&gt;PaaS Control Plane"]
     ISP2 --> AP3
     AP3 --> TS
     TS --> DK
-    DK --> CL
+    DK --> TR
+    CL --> DK
   end
 
   subgraph CICD["OTOMASI CI/CD"]
@@ -1850,23 +1867,24 @@ flowchart LR
   end
 
   WH -->|"Auto Build &amp; Redeploy"| CL
-  PC -->|"Akses Layanan HTTPS"| CL
+  PC -->|"Akses HTTPS"| TR
 
   style ISP1 fill:#fafaf8,stroke:#0a0a0a,color:#0a0a0a
   style ISP2 fill:#002FA7,stroke:#002FA7,color:#ffffff
   style TS fill:#0a0a0a,stroke:#0a0a0a,color:#fafaf8
   style CL fill:#002FA7,stroke:#002FA7,color:#ffffff
+  style TR fill:#fafaf8,stroke:#002FA7,color:#002FA7
   style WH fill:#fafaf8,stroke:#002FA7,color:#002FA7
         </pre>
       </div>
       <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2vw;border-top:1px solid var(--grey-2);padding-top:1.4vh">
         <div>
           <div class="t-cat accent">01 · ISOLASI TRAFIK</div>
-          <p class="t-body-sm" style="margin-top:.4vh">IndiHome (2 AP) menanggung beban harian pegawai; Dukodu (1 AP) menjaga jalur server tetap bersih.</p>
+          <p class="t-body-sm" style="margin-top:.4vh">IndiHome (2 AP) menanggung beban harian pegawai; Dukodu (1 AP) menjaga jalur ThinkStation P320 tetap bersih.</p>
         </div>
         <div>
           <div class="t-cat accent">02 · SINGLE NODE PAAS</div>
-          <p class="t-body-sm" style="margin-top:.4vh">ThinkStation Ubuntu Desktop menjalankan Docker + Coolify sebagai pusat orkestrasi seluruh container layanan.</p>
+          <p class="t-body-sm" style="margin-top:.4vh">ThinkStation P320 menjalankan Coolify v4.7.6 &amp; Traefik v3.6 untuk merutekan puluhan subdomain HTTPS otomatis.</p>
         </div>
         <div>
           <div class="t-cat accent">03 · GITOPS PIPELINE</div>
@@ -1877,12 +1895,83 @@ flowchart LR
   </div>
 </section>
 
-<!-- SLIDE 04 · S08 Duo Compare · DARK -->
+<!-- SLIDE 04 · S21 Tech Spec Sheet (Real ThinkStation P320 Telemetry) · LIGHT -->
+<section class="slide light" data-layout="S21" data-animate="tech-spec" data-slide-id="thinkstation-specs">
+  <div class="canvas-card">
+    <div class="chrome-min tight">
+      <div class="l">03 · TELEMETRI HARDWARE PRODUKSI</div>
+      <div class="r">04 / 11</div>
+    </div>
+    <div style="flex:1;padding:0;display:grid;grid-template-columns:1fr 1.35fr;gap:3.5vw;padding-bottom:3.5vh;min-height:0">
+      <div style="display:flex;flex-direction:column;justify-content:space-between">
+        <div data-anim="head">
+          <div class="t-meta" style="margin-bottom:1.2vh">LENOVO THINKSTATION P320 · X86-64</div>
+          <h2 style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.98;letter-spacing:-.03em;color:var(--text-primary)">
+            Kapasitas Node<br/>Server Utama
+          </h2>
+          <p class="t-body" style="margin-top:2vh;color:var(--text-secondary)">
+            Host: <code style="font-family:var(--mono)">server-ThinkStation-P320</code><br/>
+            OS: Ubuntu 24.04.4 LTS (Desktop)<br/>
+            Kernel: Linux 7.0.0-43-generic<br/>
+            Runtime: Docker v29.5.0 · Coolify v4.7.6
+          </p>
+        </div>
+        <div style="border-top:2px solid var(--accent);padding-top:1.8vh">
+          <div class="t-meta" style="color:var(--accent-ink)">TOTAL WORKLOAD BERJALAN</div>
+          <div style="font-family:var(--sans);font-weight:200;font-size:min(6.4vw,11vh);line-height:.92;letter-spacing:-.04em;color:var(--accent-display)">67</div>
+          <div class="t-body-sm">Container Docker aktif (aplikasi, database, queue worker, proxy &amp; observability).</div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;justify-content:space-between">
+        <div class="spec-kpi-3" data-anim="up">
+          <div class="spec-kpi-box">
+            <div class="t-meta">COMPUTE</div>
+            <div style="font-family:var(--sans);font-weight:200;font-size:min(3.6vw,6.4vh);line-height:.95;letter-spacing:-.03em">4<span style="font-size:.4em;opacity:.6"> CORES</span></div>
+            <p class="t-body-sm">Intel Xeon E3-1220 v6 @ 3.00GHz (0-3 NUMA).</p>
+          </div>
+          <div class="spec-kpi-box">
+            <div class="t-meta">MEMORY</div>
+            <div style="font-family:var(--sans);font-weight:200;font-size:min(3.6vw,6.4vh);line-height:.95;letter-spacing:-.03em">15<span style="font-size:.4em;opacity:.6"> GiB</span></div>
+            <p class="t-body-sm">6.7 GiB terpakai, 8.8 GiB tersedia (+11 GiB swap).</p>
+          </div>
+          <div class="spec-kpi-box">
+            <div class="t-meta">STORAGE</div>
+            <div style="font-family:var(--sans);font-weight:200;font-size:min(3.6vw,6.4vh);line-height:.95;letter-spacing:-.03em">435<span style="font-size:.4em;opacity:.6"> GB</span></div>
+            <p class="t-body-sm">195 GB terpakai (48%), 218 GB ruang bebas.</p>
+          </div>
+        </div>
+
+        <div data-anim="up" style="display:flex;flex-direction:column;gap:1.4vh">
+          <div class="t-meta">DISTRIBUSI UTILISASI &amp; HEADROOM RESOURCE</div>
+          <div class="spec-bars-9">
+            <div class="spec-bar" style="height:45%"></div>
+            <div class="spec-bar" style="height:60%"></div>
+            <div class="spec-bar accent" style="height:82%"></div>
+            <div class="spec-bar" style="height:48%"></div>
+            <div class="spec-bar" style="height:55%"></div>
+            <div class="spec-bar accent" style="height:90%"></div>
+            <div class="spec-bar" style="height:42%"></div>
+            <div class="spec-bar" style="height:68%"></div>
+            <div class="spec-bar accent" style="height:75%"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;border-top:1px solid var(--grey-2);padding-top:1vh">
+            <span class="t-meta">PROXY: TRAEFIK v3.6</span>
+            <span class="t-meta">RAM AVAILABLE: 58%</span>
+            <span class="t-meta">DISK FREE: 52%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 05 · S08 Duo Compare · DARK -->
 <section class="slide dark" data-layout="S08" data-animate="duo-mirror" data-slide-id="network-dual-isp">
   <div class="canvas-card">
     <div class="chrome-min">
-      <div class="l">03 · SEGMENTASI JARINGAN</div>
-      <div class="r">04 / 09</div>
+      <div class="l">04 · SEGMENTASI JARINGAN</div>
+      <div class="r">05 / 11</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:2vh;padding-bottom:3.5vh">
       <div data-anim="head" style="display:flex;flex-direction:column;gap:1.2vh">
@@ -1898,21 +1987,21 @@ flowchart LR
           <p class="col-desc" style="color:rgba(var(--paper-rgb),.8)">Melayani trafik harian pegawai BPS Mempawah melalui 2 unit Access Point untuk jangkauan ruang kerja.</p>
           <ul class="col-list" style="border-top-color:rgba(var(--paper-rgb),.22)">
             <li>2 Access Point aktif untuk distribusi Wi-Fi pegawai</li>
-            <li>Menampung puluhan PC &amp; laptop operasional kantor</li>
-            <li>Trafik tinggi (zoom, upload, browsing) terisolasi dari server</li>
-            <li>Pegawai mengakses aplikasi server lewat rute publik/domain</li>
+            <li>Menampung seluruh PC &amp; laptop operasional kantor</li>
+            <li>Trafik tinggi (rapat online, upload, browsing) terisolasi dari server</li>
+            <li>Pegawai mengakses layanan ThinkStation via HTTPS (*.dvlpid.my.id)</li>
           </ul>
         </div>
         <span class="vrule" style="background:rgba(var(--paper-rgb),.22)"></span>
         <div class="col accent">
           <div class="col-tag"><span class="num" style="color:var(--accent-ink-inverse);border-color:var(--accent-ink-inverse)">02</span> JALUR PRODUKSI SERVER</div>
           <h3 class="col-ttl" style="color:var(--accent-ink-inverse)">ISP Dukodu</h3>
-          <p class="col-desc" style="color:rgba(var(--paper-rgb),.8)">Jalur khusus untuk PC Server ThinkStation melalui 1 unit Access Point terdedikasi agar layanan tidak tercekik.</p>
+          <p class="col-desc" style="color:rgba(var(--paper-rgb),.8)">Jalur khusus untuk PC Server ThinkStation P320 melalui 1 unit Access Point terdedikasi agar layanan tidak tercekik.</p>
           <ul class="col-list" style="border-top-color:rgba(var(--paper-rgb),.22)">
-            <li>1 Access Point khusus untuk segmen server ThinkStation</li>
+            <li>1 Access Point khusus untuk segmen server ThinkStation P320</li>
             <li>Bebas dari saturasi bandwidth user kantor saat jam sibuk</li>
             <li>Menjamin webhook GitHub &amp; pull Docker image berjalan stabil</li>
-            <li>Memudahkan troubleshooting saat salah satu ISP mengalami gangguan</li>
+            <li>Isolasi gangguan: masalah di IndiHome tidak mematikan server</li>
           </ul>
         </div>
       </div>
@@ -1920,52 +2009,91 @@ flowchart LR
   </div>
 </section>
 
-<!-- SLIDE 05 · S04 Six Cells · LIGHT -->
-<section class="slide light" data-layout="S04" data-animate="grid-reveal" data-slide-id="hardware-compute">
+<!-- SLIDE 06 · S15 Matrix + Hero Stat (Real Coolify Apps Inventory) · LIGHT -->
+<section class="slide light" data-layout="S15" data-animate="matrix-fill" data-slide-id="coolify-ecosystem">
   <div class="canvas-card">
     <div class="chrome-min tight">
-      <div class="l">04 · INVENTARIS HARDWARE &amp; SOFTWARE</div>
-      <div class="r">05 / 09</div>
+      <div class="l">05 · EKOSISTEM APLIKASI COOLIFY</div>
+      <div class="r">06 / 11</div>
+    </div>
+    <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr auto;gap:2.2vh;padding-bottom:3.5vh;min-height:0">
+      <div data-anim="line" style="display:flex;flex-direction:column;gap:1vh">
+        <div class="t-meta">LIVE SERVICES ON THINKSTATION P320 · *.DVLPPID.MY.ID</div>
+        <h2 style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:1;letter-spacing:-.03em;color:var(--text-primary)">
+          12 Kelompok Layanan Aktif di Produksi
+        </h2>
+      </div>
+      <div data-anim="up" class="matrix-grid-4x3">
+        <div class="matrix-cell"><div class="m-ttl">Cerdas</div><div class="m-sub">app / api / editor.dvlpid.my.id</div></div>
+        <div class="matrix-cell"><div class="m-ttl">GardaData</div><div class="m-sub">gardadata.dvlpid.my.id</div></div>
+        <div class="matrix-cell"><div class="m-ttl">SIPEDAS / DokterV</div><div class="m-sub">admin.dvlpid.my.id</div></div>
+        <div class="matrix-cell"><div class="m-ttl">AINA &amp; WA Bot</div><div class="m-sub">aina / aina-wa / wa.dvlpid.my.id</div></div>
+        <div class="matrix-cell"><div class="m-ttl">Lumis AI</div><div class="m-sub">chat.dvlpid.my.id</div></div>
+        <div class="matrix-cell"><div class="m-ttl">FlashLearn</div><div class="m-sub">learn.dvlpid.my.id</div></div>
+        <div class="matrix-cell"><div class="m-ttl">MediaVault</div><div class="m-sub">store.dvlpid.my.id + Meilisearch</div></div>
+        <div class="matrix-cell"><div class="m-ttl">rIDM Auth SSO</div><div class="m-sub">Identity + Valkey + Postgres</div></div>
+        <div class="matrix-cell"><div class="m-ttl">Infisical Vault</div><div class="m-sub">Centralized Secret Manager</div></div>
+        <div class="matrix-cell"><div class="m-ttl">Observability</div><div class="m-sub">obv / sre.dvlpid.my.id</div></div>
+        <div class="matrix-cell"><div class="m-ttl">Automation</div><div class="m-sub">n8n / wind / paca.dvlpid.my.id</div></div>
+        <div class="matrix-cell is-accent"><div class="m-ttl">Control Plane</div><div class="m-sub">Coolify v4.7.6 + Traefik v3.6</div></div>
+      </div>
+      <div data-anim="up" style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--grey-2);padding-top:1.4vh">
+        <div style="display:flex;align-items:baseline;gap:1.2vw">
+          <span style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,8vh);line-height:.9;color:var(--accent-display)">67</span>
+          <span class="t-body">Container Docker aktif terorkestrasi dalam 1 server ThinkStation P320.</span>
+        </div>
+        <span class="t-meta">DOCKER v29.5.0 · TRAEFIK PROXY</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 07 · S04 Six Cells · GREY -->
+<section class="slide grey" data-layout="S04" data-animate="grid-reveal" data-slide-id="hardware-compute">
+  <div class="canvas-card">
+    <div class="chrome-min tight">
+      <div class="l">06 · ANATOMI STACK INFRASTRUKTUR</div>
+      <div class="r">07 / 11</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:2vh;padding-bottom:3.5vh">
       <div data-anim="head" style="display:flex;flex-direction:column;gap:1.2vh">
         <div class="t-meta">CORE INFRASTRUCTURE COMPONENTS · 6 ELEMEN KUNCI</div>
         <h2 style="font-family:var(--sans);font-weight:200;font-size:min(4.8vw,8.6vh);line-height:1;letter-spacing:-.03em;color:var(--text-primary)">
-          Anatomi Node Server &amp; Klien
+          Peran Masing-Masing Lapisan
         </h2>
       </div>
       <div class="sub-grid-3-2" data-anim="up" style="margin-top:1vh">
-        <article class="sub-card">
+        <article class="sub-card" style="background:var(--paper)">
           <span class="nb-corner">01</span>
           <i data-lucide="cpu"></i>
-          <h3 class="ttl">PC Server ThinkStation</h3>
-          <p class="desc">Workstation kelas enterprise sebagai satu-satunya node produksi lokal di BPS Mempawah.</p>
+          <h3 class="ttl">ThinkStation P320</h3>
+          <p class="desc">Workstation Xeon 4-Core sebagai satu-satunya node produksi lokal di BPS Mempawah.</p>
         </article>
-        <article class="sub-card">
+        <article class="sub-card" style="background:var(--paper)">
           <span class="nb-corner">02</span>
           <i data-lucide="terminal"></i>
-          <h3 class="ttl">Ubuntu Desktop OS</h3>
-          <p class="desc">Sistem operasi host di ThinkStation; mendukung manajemen GUI lokal maupun remote CLI.</p>
+          <h3 class="ttl">Ubuntu 24.04.4 LTS</h3>
+          <p class="desc">OS host desktop yang mendukung manajemen grafis lokal sekaligus remote CLI &amp; Docker.</p>
         </article>
-        <article class="sub-card">
+        <article class="sub-card" style="background:var(--paper)">
           <span class="nb-corner">03</span>
           <i data-lucide="box"></i>
-          <h3 class="ttl">Docker Engine</h3>
-          <p class="desc">Mengisolasi setiap aplikasi internal ke dalam container mandiri tanpa konflik dependensi.</p>
+          <h3 class="ttl">Docker Engine v29.5.0</h3>
+          <p class="desc">Mengisolasi 67 container layanan agar tidak terjadi konflik runtime atau dependensi.</p>
         </article>
         <article class="sub-card accent">
           <span class="nb-corner">04</span>
           <i data-lucide="layers"></i>
-          <h3 class="ttl">Coolify PaaS</h3>
-          <p class="desc">Control plane self-hosted: manajemen container, routing domain *.dvlpid.my.id, SSL &amp; logs.</p>
+          <h3 class="ttl">Coolify v4.7.6 + Traefik</h3>
+          <p class="desc">PaaS self-hosted + reverse proxy Traefik v3.6 untuk routing *.dvlpid.my.id, SSL &amp; logs.</p>
         </article>
-        <article class="sub-card">
+        <article class="sub-card" style="background:var(--paper)">
           <span class="nb-corner">05</span>
           <i data-lucide="monitor"></i>
           <h3 class="ttl">PC &amp; Laptop Pegawai</h3>
-          <p class="desc">Perangkat kerja seluruh staf BPS Mempawah yang mengakses layanan web internal via IndiHome.</p>
+          <p class="desc">Perangkat kerja seluruh staf BPS Mempawah yang mengakses aplikasi via ISP IndiHome.</p>
         </article>
-        <article class="sub-card">
+        <article class="sub-card" style="background:var(--paper)">
           <span class="nb-corner">06</span>
           <i data-lucide="wifi"></i>
           <h3 class="ttl">3 Access Points</h3>
@@ -1976,12 +2104,12 @@ flowchart LR
   </div>
 </section>
 
-<!-- SLIDE 06 · S14 Loop Diagram · GREY -->
-<section class="slide grey" data-layout="S14" data-animate="loop-form" data-slide-id="cicd-pipeline">
+<!-- SLIDE 08 · S14 Loop Diagram · LIGHT -->
+<section class="slide light" data-layout="S14" data-animate="loop-form" data-slide-id="cicd-pipeline">
   <div class="canvas-card">
     <div class="chrome-min">
-      <div class="l">05 · OTOMASI DEPLOYMENT</div>
-      <div class="r">06 / 09</div>
+      <div class="l">07 · OTOMASI DEPLOYMENT</div>
+      <div class="r">08 / 11</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:3vh;padding-bottom:3.5vh">
       <div data-anim="line" style="display:flex;flex-direction:column;gap:1.2vh">
@@ -2010,14 +2138,14 @@ flowchart LR
             <span class="t-cat accent">03</span>
             <div>
               <h3 class="t-body-emp">Build Docker Image Otomatis</h3>
-              <p class="t-body-sm">Coolify menarik source terbaru, membangun image Docker baru, dan memvalidasi healthcheck.</p>
+              <p class="t-body-sm">Coolify menarik source terbaru, membangun image Docker baru (atau pull GHCR), dan cek healthcheck.</p>
             </div>
           </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:1.6vw;align-items:start;border-top:1px solid var(--grey-2);border-bottom:1px solid var(--grey-2);padding:1.6vh 0">
             <span class="t-cat accent">04</span>
             <div>
-              <h3 class="t-body-emp">Auto Redeploy Container</h3>
-              <p class="t-body-sm">Container lama digantikan container baru secara otomatis dan langsung aktif di *.dvlpid.my.id.</p>
+              <h3 class="t-body-emp">Traefik Switch &amp; Live HTTPS</h3>
+              <p class="t-body-sm">Container lama digantikan container baru otomatis dan langsung aktif di subdomain *.dvlpid.my.id.</p>
             </div>
           </div>
         </div>
@@ -2038,19 +2166,19 @@ flowchart LR
             </div>
           </div>
           <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.8vw;width:100%">
-            <div class="card-fill" style="background:var(--paper);padding:1vh .8vw;border-top:2px solid var(--accent)">
+            <div class="card-fill" style="background:var(--grey-1);padding:1vh .8vw;border-top:2px solid var(--accent)">
               <div class="t-meta" style="color:var(--accent-ink)">01</div>
               <div class="t-body-sm" style="font-weight:500">Git Push</div>
             </div>
-            <div class="card-fill" style="background:var(--paper);padding:1vh .8vw;border-top:2px solid var(--ink)">
+            <div class="card-fill" style="background:var(--grey-1);padding:1vh .8vw;border-top:2px solid var(--ink)">
               <div class="t-meta">02</div>
               <div class="t-body-sm" style="font-weight:500">Webhook</div>
             </div>
-            <div class="card-fill" style="background:var(--paper);padding:1vh .8vw;border-top:2px solid var(--ink)">
+            <div class="card-fill" style="background:var(--grey-1);padding:1vh .8vw;border-top:2px solid var(--ink)">
               <div class="t-meta">03</div>
               <div class="t-body-sm" style="font-weight:500">Build</div>
             </div>
-            <div class="card-fill" style="background:var(--paper);padding:1vh .8vw;border-top:2px solid var(--accent)">
+            <div class="card-fill" style="background:var(--grey-1);padding:1vh .8vw;border-top:2px solid var(--accent)">
               <div class="t-meta" style="color:var(--accent-ink)">04</div>
               <div class="t-body-sm" style="font-weight:500">Redeploy</div>
             </div>
@@ -2061,12 +2189,12 @@ flowchart LR
   </div>
 </section>
 
-<!-- SLIDE 07 · S13 Three Forces · LIGHT -->
-<section class="slide light" data-layout="S13" data-animate="three-forces" data-slide-id="domain-governance">
+<!-- SLIDE 09 · S13 Three Forces · GREY -->
+<section class="slide grey" data-layout="S13" data-animate="three-forces" data-slide-id="domain-governance">
   <div class="canvas-card">
     <div class="chrome-min tight">
-      <div class="l">06 · TATA KELOLA DOMAIN</div>
-      <div class="r">07 / 09</div>
+      <div class="l">08 · TATA KELOLA DOMAIN</div>
+      <div class="r">09 / 11</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:2.4vh;padding-bottom:3.5vh">
       <div data-anim="line" style="display:flex;flex-direction:column;gap:1vh">
@@ -2082,18 +2210,18 @@ flowchart LR
             *.dvlpid.my.id<br/>adalah Domain<br/>Pribadi Lead.
           </div>
           <div class="t-body-sm" style="color:rgba(var(--paper-rgb),.78);border-top:1px solid rgba(var(--paper-rgb),.22);padding-top:1.6vh">
-            Bukan aset resmi BPS Mempawah. Dipakai sementara untuk akselerasi staging &amp; produksi awal.
+            Saat ini menampung 20+ subdomain aktif (app, api, gardadata, admin, aina, obv, sre). Bukan aset resmi BPS Mempawah.
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:1.4vh;justify-content:space-between">
-          <div class="card-fill" style="background:var(--grey-1);padding:2.2vh 1.8vw;display:grid;grid-template-columns:auto 1fr;gap:1.8vw;align-items:center">
+          <div class="card-fill" style="background:var(--paper);padding:2.2vh 1.8vw;display:grid;grid-template-columns:auto 1fr;gap:1.8vw;align-items:center">
             <div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.4vh);line-height:.9;color:var(--accent-display)">01</div>
             <div>
               <h3 class="t-h-prod">Akselerasi Awal (Current State)</h3>
-              <p class="t-body-sm" style="margin-top:.4vh">Wildcard DNS <code style="font-family:var(--mono)">*.dvlpid.my.id</code> memungkinkan Coolify menerbitkan subdomain HTTPS otomatis untuk setiap container baru.</p>
+              <p class="t-body-sm" style="margin-top:.4vh">Wildcard DNS <code style="font-family:var(--mono)">*.dvlpid.my.id</code> memungkinkan Coolify &amp; Traefik menerbitkan subdomain HTTPS otomatis untuk setiap container baru.</p>
             </div>
           </div>
-          <div class="card-fill" style="background:var(--grey-1);padding:2.2vh 1.8vw;display:grid;grid-template-columns:auto 1fr;gap:1.8vw;align-items:center">
+          <div class="card-fill" style="background:var(--paper);padding:2.2vh 1.8vw;display:grid;grid-template-columns:auto 1fr;gap:1.8vw;align-items:center">
             <div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.4vh);line-height:.9;color:var(--accent-display)">02</div>
             <div>
               <h3 class="t-h-prod">Risiko Tata Kelola (Governance Gap)</h3>
@@ -2104,7 +2232,7 @@ flowchart LR
             <div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.4vh);line-height:.9;color:var(--accent-on)">03</div>
             <div>
               <h3 class="t-h-prod" style="color:var(--accent-on)">Roadmap Wajib: Domain Resmi BPS</h3>
-              <p class="t-body-sm" style="margin-top:.4vh;color:rgba(var(--accent-on-rgb),.88)">BPS Mempawah harus mengajukan/memiliki domain resmi sendiri, lalu memigrasikan routing Coolify tanpa mengubah arsitektur container.</p>
+              <p class="t-body-sm" style="margin-top:.4vh;color:rgba(var(--accent-on-rgb),.88)">BPS Mempawah harus mengajukan/memiliki domain resmi sendiri, lalu memigrasikan FQDN di Coolify tanpa mengubah arsitektur container.</p>
             </div>
           </div>
         </div>
@@ -2113,12 +2241,12 @@ flowchart LR
   </div>
 </section>
 
-<!-- SLIDE 08 · S19 Four Cards · DARK -->
+<!-- SLIDE 10 · S19 Four Cards · DARK -->
 <section class="slide dark" data-layout="S19" data-animate="four-cards" data-slide-id="team-playbook">
   <div class="canvas-card">
     <div class="chrome-min">
-      <div class="l">07 · OPERASIONAL TIM IT (2 ANGGOTA)</div>
-      <div class="r">08 / 09</div>
+      <div class="l">09 · OPERASIONAL TIM IT (2 ANGGOTA)</div>
+      <div class="r">10 / 11</div>
     </div>
     <div style="flex:1;padding:0;display:grid;grid-template-rows:auto 1fr;gap:4vh;padding-bottom:3.5vh">
       <div data-anim="line" style="display:flex;flex-direction:column;gap:2vh">
@@ -2137,14 +2265,14 @@ flowchart LR
           <p class="t-body-sm">Setiap push ke <code style="font-family:var(--mono)">main</code> langsung mengubah produksi. Biasakan tes lokal atau PR sebelum merge.</p>
         </div>
         <div style="border-top:1px solid rgba(var(--paper-rgb),.25);padding-top:2vh;display:flex;flex-direction:column;gap:1.4vh">
-          <div class="t-meta" style="color:var(--accent-ink-inverse)">— 02 / COOLIFY OPS</div>
-          <h3 style="font-family:var(--sans);font-weight:300;font-size:min(2vw,3.5vh);line-height:1.15;color:var(--paper)">Observabilitas &amp; Logs</h3>
-          <p class="t-body-sm">Gunakan dashboard Coolify untuk memantau build logs, status container Docker, dan environment variables.</p>
+          <div class="t-meta" style="color:var(--accent-ink-inverse)">— 02 / OBSERVABILITY</div>
+          <h3 style="font-family:var(--sans);font-weight:300;font-size:min(2vw,3.5vh);line-height:1.15;color:var(--paper)">Coolify &amp; OpenObserve</h3>
+          <p class="t-body-sm">Pantau build logs di Coolify, metrik di <code style="font-family:var(--mono)">obv.dvlpid.my.id</code>, dan secret via Infisical Vault.</p>
         </div>
         <div style="border-top:1px solid rgba(var(--paper-rgb),.25);padding-top:2vh;display:flex;flex-direction:column;gap:1.4vh">
           <div class="t-meta" style="color:var(--accent-ink-inverse)">— 03 / NETWORK HYGIENE</div>
           <h3 style="font-family:var(--sans);font-weight:300;font-size:min(2vw,3.5vh);line-height:1.15;color:var(--paper)">Jaga Isolasi 2 ISP</h3>
-          <p class="t-body-sm">Pastikan ThinkStation tetap terhubung ke AP Dukodu (1 AP) dan perangkat pegawai ke AP IndiHome (2 AP).</p>
+          <p class="t-body-sm">Pastikan ThinkStation P320 tetap terhubung ke AP Dukodu (1 AP) dan perangkat pegawai ke AP IndiHome (2 AP).</p>
         </div>
         <div style="border-top:1px solid rgba(var(--paper-rgb),.25);padding-top:2vh;display:flex;flex-direction:column;gap:1.4vh">
           <div class="t-meta" style="color:var(--accent-ink-inverse)">— 04 / ROADMAP</div>
@@ -2156,20 +2284,20 @@ flowchart LR
   </div>
 </section>
 
-<!-- SLIDE 09 · SWISS-CLOSING-ASCII · SPLIT -->
+<!-- SLIDE 11 · SWISS-CLOSING-ASCII · SPLIT -->
 <section class="slide split" data-layout="SWISS-CLOSING-ASCII" data-animate="split-statement" data-slide-id="closing">
   <div class="canvas-card">
     <div class="split-half">
       <div class="half b-accent" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between;position:relative;overflow:hidden">
         <canvas class="ascii-bg" aria-hidden="true"></canvas>
         <div class="chrome-min" style="margin-bottom:0;position:relative;z-index:1">
-          <div class="l">09 / 09</div>
+          <div class="l">11 / 11</div>
           <div class="r">CLOSING</div>
         </div>
         <div data-anim="manifesto" style="display:flex;flex-direction:column;gap:2vh;position:relative;z-index:1">
           <div class="t-meta" style="color:rgba(var(--accent-on-rgb),.78);letter-spacing:.22em;margin-bottom:1.2vh">ARCHITECTURAL SUMMARY</div>
-          <h2 style="font-family:var(--sans);font-size:min(6.4vw,11.4vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:var(--accent-on)">
-            Satu Server.<br/>Nol <span style="font-style:italic;font-weight:300">Drama</span> Deploy.
+          <h2 style="font-family:var(--sans);font-size:min(5.6vw,10vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:var(--accent-on)">
+            Satu Server.<br/>67 Container.<br/>Nol <span style="font-style:italic;font-weight:300">Drama</span> Deploy.
           </h2>
           <div style="font-family:var(--sans);font-size:max(min(15px,2vh),min(1.05vw,1.85vh));line-height:1.6;color:rgba(var(--accent-on-rgb),.86);font-weight:400;max-width:38ch;margin-top:1.2vh">
             Infrastruktur yang terisolasi di jaringan dan terotomasi di deployment membuat tim IT 3 orang mampu mengelola produksi setara skala enterprise.
@@ -2191,13 +2319,13 @@ flowchart LR
             <div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.4vh);line-height:.9;color:var(--text-primary)">01</div>
             <div>
               <h3 style="font-family:var(--sans);font-weight:400;font-size:max(min(18px,2.5vh),min(1.6vw,2.8vh));line-height:1.2;letter-spacing:-.015em;color:var(--text-primary);margin-bottom:.8vh">Jaga Segmentasi 2 ISP &amp; 3 AP</h3>
-              <p style="font-family:var(--sans);font-size:max(min(16px,2.222vh),.94vw);line-height:1.55;color:var(--text-secondary);font-weight:400">Dukodu (1 AP) khusus ThinkStation server; IndiHome (2 AP) khusus workstation pegawai.</p>
+              <p style="font-family:var(--sans);font-size:max(min(16px,2.222vh),.94vw);line-height:1.55;color:var(--text-secondary);font-weight:400">Dukodu (1 AP) khusus ThinkStation P320; IndiHome (2 AP) khusus workstation pegawai.</p>
             </div>
           </div>
           <div style="display:grid;grid-template-columns:auto 1fr;gap:min(2vw,3.556vh) 2vw;align-items:start;padding:2.4vh 0;border-top:1px solid var(--border-subtle)">
             <div style="font-family:var(--sans);font-weight:200;font-size:min(4.2vw,7.4vh);line-height:.9;color:var(--text-primary)">02</div>
             <div>
-              <h3 style="font-family:var(--sans);font-weight:400;font-size:max(min(18px,2.5vh),min(1.6vw,2.8vh));line-height:1.2;letter-spacing:-.015em;color:var(--text-primary);margin-bottom:.8vh">CI/CD Terpusat di Coolify</h3>
+              <h3 style="font-family:var(--sans);font-weight:400;font-size:max(min(18px,2.5vh),min(1.6vw,2.8vh));line-height:1.2;letter-spacing:-.015em;color:var(--text-primary);margin-bottom:.8vh">CI/CD Terpusat di Coolify v4.7.6</h3>
               <p style="font-family:var(--sans);font-size:max(min(16px,2.222vh),.94vw);line-height:1.55;color:var(--text-secondary);font-weight:400">Push ke branch <code style="font-family:var(--mono)">main</code> otomatis memicu webhook GitHub Apps untuk rebuild container Docker.</p>
             </div>
           </div>
@@ -2229,9 +2357,9 @@ const SPEAKER_NOTES = [
     minutes: 1.0,
     purpose: 'Menyamakan pemahaman mental model infrastruktur kita untuk 2 anggota tim IT.',
     talk: [
-      'Hari ini kita bedah arsitektur hardware, jaringan, dan deployment di BPS Mempawah.',
-      'Tujuannya agar kita bertiga punya pemahaman yang sama saat troubleshooting atau deploy aplikasi baru.',
-      'Tekan P kapan saja jika ingin melihat catatan presenter.'
+      'Hari ini kita bedah arsitektur hardware, jaringan, dan deployment riil di BPS Mempawah.',
+      'Server produksi kita adalah Lenovo ThinkStation P320 yang saat ini menjalankan 67 container aktif.',
+      'Tekan P kapan saja untuk membuka catatan presenter dan timer.'
     ],
     transition: 'Kita mulai dari tiga lapisan fondasi yang menopang seluruh layanan kita.',
     cue: 'Pastikan kedua anggota tim IT melihat layar dengan jelas'
@@ -2241,13 +2369,13 @@ const SPEAKER_NOTES = [
     title: 'Tiga Lapisan Utama Infrastruktur',
     section: 'Fondasi',
     minutes: 1.5,
-    purpose: 'Memecah sistem menjadi 3 layer agar mudah dipahami: Physical, Connectivity, dan Platform.',
+    purpose: 'Memecah sistem menjadi 3 layer: Physical, Connectivity, dan Platform.',
     talk: [
-      'Layer 1 adalah fisik: 1 ThinkStation sebagai server produksi dan puluhan PC/laptop pegawai.',
-      'Layer 2 adalah konektivitas: kita punya 2 ISP (Dukodu dan IndiHome) dengan 3 Access Point.',
-      'Layer 3 adalah software: Docker + Coolify + GitHub Apps Webhook untuk CI/CD otomatis.'
+      'Layer 1 fisik: 1 ThinkStation P320 sebagai server produksi dan puluhan PC/laptop pegawai.',
+      'Layer 2 konektivitas: 2 ISP (Dukodu dan IndiHome) dengan total 3 Access Point.',
+      'Layer 3 platform: Docker v29.5.0, Coolify v4.7.6, Traefik v3.6, dan GitHub Apps Webhook.'
     ],
-    transition: 'Sekarang kita lihat bagaimana ketiga lapisan ini terhubung dalam satu diagram utuh.',
+    transition: 'Sekarang kita lihat bagaimana ketiga lapisan ini terhubung dalam diagram utuh.'
   },
   {
     id: 'architecture-diagram',
@@ -2256,13 +2384,25 @@ const SPEAKER_NOTES = [
     minutes: 3.0,
     purpose: 'Memberikan gambaran end-to-end topologi jaringan, server, dan alur CI/CD dalam satu pandangan.',
     talk: [
-      'Perhatikan 3 zona utama: Zona Operasional (IndiHome), Zona Produksi (Dukodu), dan Otomasi CI/CD.',
-      'Pegawai di PC/laptop terhubung ke 2 AP IndiHome, lalu mengakses layanan di Coolify via HTTPS.',
-      'ThinkStation berada di jalur terpisah melalui 1 AP dari ISP Dukodu.',
-      'Saat kita push ke branch main di GitHub, GitHub Apps mengirim webhook ke Coolify untuk auto-redeploy.'
+      'Zona Operasional (IndiHome, 2 AP) melayani PC/laptop pegawai yang mengakses layanan lewat HTTPS ke Traefik.',
+      'Zona Produksi (Dukodu, 1 AP) melayani ThinkStation P320 dengan Docker v29.5.0, Coolify v4.7.6, dan Traefik v3.6.',
+      'Zona CI/CD: git push ke branch main di GitHub memicu GitHub Apps Webhook ke Coolify untuk auto-redeploy.'
     ],
-    transition: 'Mari kita zoom-in ke alasan di balik pemisahan 2 ISP dan 3 Access Point ini.',
+    transition: 'Mari kita lihat kapasitas hardware riil dari ThinkStation P320.',
     cue: 'Tunjuk alur dari Zona CI/CD ke Zona Produksi ThinkStation'
+  },
+  {
+    id: 'thinkstation-specs',
+    title: 'Spesifikasi Node Produksi: ThinkStation P320',
+    section: 'Hardware & Telemetri',
+    minutes: 2.0,
+    purpose: 'Menunjukkan kapasitas komputasi aktual dan headroom resource ThinkStation P320.',
+    talk: [
+      'CPU kita Intel Xeon E3-1220 v6 4 core 3.00GHz dengan OS Ubuntu 24.04.4 LTS.',
+      'RAM 15 GiB: baru terpakai 6.7 GiB, masih ada 8.8 GiB tersedia (58% headroom).',
+      'Storage 435 GB: terpakai 195 GB (48%), masih bebas 218 GB untuk 67 container aktif.'
+    ],
+    transition: 'Dengan 67 container aktif, kenapa jaringan 2 ISP dan 3 AP harus dipisah?'
   },
   {
     id: 'network-dual-isp',
@@ -2271,37 +2411,50 @@ const SPEAKER_NOTES = [
     minutes: 2.0,
     purpose: 'Menjelaskan rasionalitas arsitektur jaringan: isolasi trafik user vs trafik server.',
     talk: [
-      'Kenapa dipisah? Trafik pegawai sangat fluktuatif: rapat online, sinkronisasi data, dan browsing.',
-      'IndiHome dengan 2 AP menanggung beban ruang kerja pegawai.',
-      'Dukodu dengan 1 AP dikhususkan untuk ThinkStation agar bandwidth server, webhook, dan pull Docker image tidak terganggu.'
+      'IndiHome dengan 2 AP menanggung beban ruang kerja pegawai (zoom, upload, browsing).',
+      'Dukodu dengan 1 AP dikhususkan untuk ThinkStation P320 agar bandwidth server dan webhook GitHub tetap stabil.',
+      'Jika IndiHome penuh atau terganggu, container produksi di ThinkStation tetap aman di jalur Dukodu.'
     ],
-    transition: 'Setelah jaringan jelas, kita cek inventaris komponen hardware dan software di dalamnya.'
+    transition: 'Sekarang kita lihat daftar lengkap 12 kelompok layanan yang sudah jalan di Coolify.'
+  },
+  {
+    id: 'coolify-ecosystem',
+    title: '12 Kelompok Layanan Aktif di Coolify',
+    section: 'Ekosistem Software',
+    minutes: 2.5,
+    purpose: 'Memetakan aplikasi BPS dan platform pendukung yang berjalan di atas *.dvlpid.my.id.',
+    talk: [
+      'Di sisi aplikasi BPS ada Cerdas, GardaData, SIPEDAS/DokterV, AINA + WA Bot, Lumis AI, FlashLearn, dan MediaVault.',
+      'Di sisi infrastruktur inti ada rIDM Auth SSO, Infisical Vault untuk secret, OpenObserve untuk logging, serta n8n & Windmill.',
+      'Total seluruhnya ada 67 container yang dikelola oleh Coolify v4.7.6 dan Traefik v3.6.'
+    ],
+    transition: 'Mari kita bedah peran masing-masing komponen hardware dan software dalam 6 elemen.'
   },
   {
     id: 'hardware-compute',
-    title: 'Anatomi Node Server & Klien',
-    section: 'Hardware & Stack',
-    minutes: 2.0,
-    purpose: 'Memetakan 6 komponen utama beserta peran masing-masing dalam ekosistem.',
+    title: 'Anatomi Stack Infrastruktur (6 Komponen)',
+    section: 'Stack & Komponen',
+    minutes: 1.5,
+    purpose: 'Memastikan tim memahami tanggung jawab tiap komponen dari fisik hingga reverse proxy.',
     talk: [
-      'ThinkStation menggunakan Ubuntu Desktop agar mudah dikelola baik lewat terminal maupun desktop.',
-      'Semua aplikasi berjalan di dalam container Docker agar tidak saling bentrok dependensi.',
-      'Coolify berperan sebagai PaaS lokal (mirip Vercel/Heroku self-hosted) yang mengatur reverse proxy dan SSL.'
+      'ThinkStation P320 dan Ubuntu 24.04.4 LTS menjadi host fisik dan OS dasar.',
+      'Docker Engine v29.5.0 mengisolasi seluruh 67 container agar tidak bentrok.',
+      'Coolify v4.7.6 + Traefik v3.6 mengotomasi routing domain, SSL Let’s Encrypt, dan healthcheck.'
     ],
-    transition: 'Bagaimana kode dari laptop kita bisa langsung tayang di Coolify? Kita lihat loop CI/CD.'
+    transition: 'Bagaimana proses update aplikasi berjalan otomatis tanpa SSH manual? Kita lihat loop CI/CD.'
   },
   {
     id: 'cicd-pipeline',
     title: 'Siklus Auto-Redeploy CI/CD',
     section: 'DevOps & CI/CD',
     minutes: 2.0,
-    purpose: 'Menjelaskan alur GitOps sehingga tim tidak perlu lagi SSH manual untuk update aplikasi.',
+    purpose: 'Menjelaskan alur GitOps dari push ke main hingga container aktif di Traefik.',
     talk: [
-      'Langkah 1: Kita push kode ke branch main di repository GitHub.',
-      'Langkah 2: GitHub Apps Webhook langsung memberi sinyal ke Coolify.',
-      'Langkah 3 & 4: Coolify otomatis build image Docker baru dan mengganti container lama tanpa ribet manual.'
+      'Langkah 1: Tim IT push kode ke branch main di GitHub.',
+      'Langkah 2: GitHub Apps Webhook mengirim event push ke Coolify.',
+      'Langkah 3 & 4: Coolify build image Docker baru, cek healthcheck, lalu Traefik mengarahkan trafik ke container baru.'
     ],
-    transition: 'Namun ada satu catatan tata kelola penting terkait domain yang kita pakai saat ini.'
+    transition: 'Ada satu catatan tata kelola penting terkait domain *.dvlpid.my.id yang kita pakai sekarang.'
   },
   {
     id: 'domain-governance',
@@ -2310,11 +2463,11 @@ const SPEAKER_NOTES = [
     minutes: 2.0,
     purpose: 'Menekankan bahwa *.dvlpid.my.id adalah domain pribadi dan BPS Mempawah harus punya domain resmi.',
     talk: [
-      'Saat ini semua layanan memakai wildcard *.dvlpid.my.id, yang merupakan domain pribadi saya.',
-      'Ini bagus untuk bergerak cepat di awal, tapi secara tata kelola instansi, aset publik tidak boleh bergantung pada domain personal.',
-      'Roadmap wajib kita: BPS Mempawah harus mengadakan domain resmi sendiri, lalu kita arahkan DNS-nya ke Coolify.'
+      'Saat ini lebih dari 20 subdomain produksi memakai wildcard *.dvlpid.my.id milik pribadi saya.',
+      'Untuk jangka panjang, instansi pemerintah tidak boleh bergantung pada domain personal.',
+      'Roadmap wajib kita: ajukan domain resmi BPS Mempawah, lalu migrasikan FQDN di Coolify tanpa ubah kode.'
     ],
-    transition: 'Terakhir, bagaimana pembagian pola kerja kita bertiga sehari-hari?'
+    transition: 'Terakhir, bagaimana pola kerja harian kita bertiga untuk menjaga sistem ini?'
   },
   {
     id: 'team-playbook',
@@ -2323,10 +2476,9 @@ const SPEAKER_NOTES = [
     minutes: 1.5,
     purpose: 'Memberikan panduan praktis harian bagi 2 anggota tim IT.',
     talk: [
-      'Pertama, jaga disiplin branch main karena setiap push langsung memicu deploy produksi.',
-      'Kedua, pantau logs dan status container langsung dari dashboard Coolify.',
-      'Ketiga, pastikan perangkat tetap sesuai jalurnya: server di Dukodu, pegawai di IndiHome.',
-      'Keempat, kita kawal bersama pengadaan domain resmi BPS Mempawah.'
+      'Jaga disiplin branch main karena setiap push langsung memicu deploy produksi.',
+      'Gunakan Coolify untuk build logs, OpenObserve (obv.dvlpid.my.id) untuk monitoring, dan Infisical untuk secrets.',
+      'Pastikan isolasi jaringan 2 ISP tetap terjaga dan kawal bersama pengadaan domain resmi BPS.'
     ],
     transition: 'Sebagai penutup, kita rangkum tiga prinsip utama dari briefing ini.'
   },
@@ -2338,7 +2490,8 @@ const SPEAKER_NOTES = [
     purpose: 'Merangkum arsitektur dalam 3 poin aksi yang mudah diingat tim IT.',
     talk: [
       'Ingat tiga hal: pisahkan jalur ISP, andalkan otomasi GitHub Apps ke Coolify, dan kejar domain resmi BPS.',
-      'Silakan jika ada pertanyaan teknis atau bagian yang ingin kita demo langsung di dashboard Coolify.'
+      'Dengan fondasi ini, tim kecil 3 orang bisa mengelola 67 container secara stabil.',
+      'Silakan jika ada pertanyaan teknis atau bagian yang ingin kita buka langsung di dashboard Coolify.'
     ],
     transition: 'Sesi selesai, lanjut ke diskusi dan tanya jawab.',
     interaction: 'Buka sesi Q&A dengan 2 anggota tim IT'
@@ -4258,14 +4411,14 @@ if(motion){
       theme: 'base',
       flowchart: {
         curve: 'linear',
-        nodeSpacing: 36,
-        rankSpacing: 52,
-        padding: 14,
+        nodeSpacing: 32,
+        rankSpacing: 48,
+        padding: 12,
         htmlLabels: true
       },
       themeVariables: {
         fontFamily: 'Inter, system-ui, sans-serif',
-        fontSize: '15px',
+        fontSize: '14px',
         primaryColor: '#fafaf8',
         primaryTextColor: '#0a0a0a',
         primaryBorderColor: '#002FA7',
